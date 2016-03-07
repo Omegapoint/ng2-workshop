@@ -18,7 +18,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     jspm: {
-      config: 'config.karma.js',
+      
       loadFiles: [
         'app/init.spec.ts',
         'app/**/*.spec.ts'
