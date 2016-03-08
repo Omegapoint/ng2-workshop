@@ -17,7 +17,21 @@ Nu kan vi starta applikationen:
 <pre>
 npm start
 </pre>
-När index-sidan laddas i browsern tar SystemJS över och laddar ner nödvändiga beroenden, vi behöver alltså inte skapa några paketfiler eller bundles. <br><br>
+När index-sidan laddas i browsern körs följande script:
+<pre>
+
+  var readyForMainLoad;
+  if (location.origin.match(/localhost/)) {
+    System.trace = true
+    readyForMainLoad = System.import('systemjs-hot-reloader').then(function(HotReloader) {
+      hr = new HotReloader.default('http://localhost:9089');
+    });
+  }
+  Promise.resolve(readyForMainLoad).then(function() {
+    System.import("app").then(function(){ console.log("running") });
+  });
+</pre>
+Detta konfigurerar SystemJS med systemjs-hot-reloader, så filer under app-katalogen laddas in och om vi gör en ändring och sparar uppdateras sidan automatiskt. <br><br>
 Det går även att köra enhetstester, tester inkluderas om vi lägger till typescript-filer med ändelsen spec.ts, dessa skrivs med jasmine.
 <pre>
 npm run test
