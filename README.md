@@ -2,33 +2,24 @@
 Detta repo innehåller en Angular 2.0 app och en node backend för en framtida workshop med Angular 2.0 <br>
 För att kunna köra applikationen krävs NodeJS och NPM installerat.
 ## Instruktion för setup:
-Alla nödvändiga beroenden laddas ner genom att köra följande kommando:
-<pre>
-npm run setup
-</pre>
-Efter setup scriptet så måste vi göra en liten ändring, detta p.g.a beroenden mellan biblioteken angular2-beta och rxjs. <br><br>
-<ol>
-  <li>
-    Öppna filen config.js (ng2-workshop/config.js)
-  </li>
-  <li>
-    Leta upp alla förekomster av "rxjs" i map-objektet och ta bort dom.
-  </li>
-  <li>
-    Spara och stäng filen.
-  </li>
-</ol>
-Öppna ett nytt terminalfönster och starta backend tjänsten:
+Börja med att köra igång rest tjänsten så att den är igång:
 <pre>
 npm run api
 </pre>
 Nu finns en enklare rest tjänst tillgänglig på port 80 <br><br>
-Nu kan vi starta frontend applikationen:
+Kör sedan följande kommando:
+<pre>
+npm run setup
+</pre>
+Setup scriptet konfigurerar hela projektet med hjälp av jspm och npm, det är många paket som laddas ner så se till att ha en bra
+internetanslutning innan du börjar. <br><br>
+Nu kan vi starta applikationen:
 <pre>
 npm start
 </pre>
-
-Det går även att köra enhetstester, tester inkluderas om vi lägger till typescript-filer med ändelsen spec.ts
+När index-sidan laddas i browsern tar SystemJS över och laddar ner nödvändiga beroenden, vi behöver alltså inte skapa några paketfiler eller bundles. <br><br>
+Det går även att köra enhetstester, tester inkluderas om vi lägger till typescript-filer med ändelsen spec.ts, dessa skrivs med jasmine.
 <pre>
 npm run test
 </pre>
+Testscriptet är konfiguerat att köra PhantomJS2 och singleRun, d.v.s samma inställning som om man kör på en CI-server.
