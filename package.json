@@ -3,9 +3,8 @@
     "start": "node server",
     "test": "karma start karma.conf.js",
     "preInstall": "npm install -g jspm typings",
-    "install": "npm install && jspm install && typings install",
     "postInstall": "npm install -g karma-cli",
-    "setup": " npm run preInstall && npm run install && npm run postInstall",
+    "setup": "npm run preInstall && npm install && jspm install && typings install && npm run postInstall",
     "api": "node api"
   },
   "jspm": {
