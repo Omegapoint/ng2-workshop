@@ -1,14 +1,24 @@
 import { Component } from 'angular2/core';
 import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
+import { MoviesComponent } from './movies/movies.component';
 
 @Component({
   selector: 'my-app',
   template: `
-  <div style="width:50%;margin-top:20px;margin-left:20px">
-    <alert type="info">{{title}}</alert>
+  <div class="container">
+    <div class="row" style="margin-top:20px">
+      <div class="col-sm-12">
+        <alert type="info">{{title}}</alert>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <movies></movies>
+      </div>
+    </div>
   </div>
   `,
-  directives: [Alert]
+  directives: [Alert, MoviesComponent]
 })
 
 export class AppComponent {

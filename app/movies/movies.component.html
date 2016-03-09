@@ -1,0 +1,6 @@
+<h3>Lista med filmer</h3>
+<accordion [closeOthers]="oneAtATime">
+  <accordion-group *ngFor="#movie of movies" [heading]="movie.name">
+    This content is straight in the template.
+  </accordion-group>
+</accordion>
