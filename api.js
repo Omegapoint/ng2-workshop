@@ -17,17 +17,17 @@ var port = process.env.PORT || 80;        // set our port
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
 
-const HEROES = [
-    {"id": 11, "name": "Mr. Nice"},
-    {"id": 12, "name": "Narco"},
-    {"id": 13, "name": "Bombasto"},
-    {"id": 14, "name": "Celeritas"},
-    {"id": 15, "name": "Magneta"},
-    {"id": 16, "name": "RubberMan"},
-    {"id": 17, "name": "Dynama"},
-    {"id": 18, "name": "Dr IQ"},
-    {"id": 19, "name": "Magma"},
-    {"id": 20, "name": "Tornado"}
+const MOVIES = [
+    {"id": 11, "name": "Sagan om ringen"},
+    {"id": 12, "name": "James Bond - Spectre"},
+    {"id": 13, "name": "X-men"},
+    {"id": 14, "name": "Spiderman"},
+    {"id": 15, "name": "Terminator 2"},
+    {"id": 16, "name": "Borta med vinden"},
+    {"id": 17, "name": "Sjunde inseglet"},
+    {"id": 18, "name": "Gone in 60 seconds"},
+    {"id": 19, "name": "Sällskapsresan"},
+    {"id": 20, "name": "Titanic"}
 ];
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
@@ -35,8 +35,8 @@ router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });
 });
 
-router.get('/heroes', function(req, res) {
-  res.json(HEROES);
+router.get('/movies', function(req, res) {
+  res.json(MOVIES);
 });
 
 // more routes for our API will happen here
