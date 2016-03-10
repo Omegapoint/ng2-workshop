@@ -1,6 +1,20 @@
 <h3>Lista med filmer</h3>
 <accordion [closeOthers]="oneAtATime">
   <accordion-group *ngFor="#movie of movies" [heading]="movie.name">
-    This content is straight in the template.
+    <div class="row">
+      <div class="col-sm-12">
+        {{movie.description}}
+      </div>
+    </div>
+    <div class="row row-margin">
+      <div class="col-sm-4">
+        <button (click)="isCollapsed = !isCollapsed" class="btn btn-primary">Betygsätt filmen</button>
+        <div [collapse]="isCollapsed" class="panel panel-default row-margin">
+          <div class="panel-body">
+            Basic panel example
+          </div>
+        </div>
+      </div>
+    </div>
   </accordion-group>
 </accordion>

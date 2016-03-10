@@ -1,6 +1,6 @@
 import { Component, View, OnInit } from 'angular2/core';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
-import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap';
+import { ACCORDION_DIRECTIVES, Collapse } from 'ng2-bootstrap';
 import { MoviesService } from './movies.service';
 import { Movie } from './movie';
 
@@ -8,7 +8,7 @@ import { Movie } from './movie';
   selector: 'movies',
   templateUrl: 'app/movies/movies.component.html',
   styleUrls: ['app/movies/movies.component.css'],
-  directives: [ACCORDION_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
+  directives: [ACCORDION_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, Collapse],
   providers: [MoviesService]
 })
 
@@ -18,11 +18,13 @@ export class MoviesComponent implements OnInit {
     isFirstDisabled: false
   };
   movies: Movie[] = [];
+  isCollapsed = true;
+  
   constructor(private _moviesService: MoviesService) { }
 
   ngOnInit() {
     this._moviesService.getMovies()
       .subscribe(movies => this.movies = movies);
-    
+
   }
 }
