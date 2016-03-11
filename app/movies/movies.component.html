@@ -8,12 +8,7 @@
     </div>
     <div class="row row-margin">
       <div class="col-sm-4">
-        <button (click)="isCollapsed = !isCollapsed" class="btn btn-primary">Betygsätt filmen</button>
-        <div [collapse]="isCollapsed" class="panel panel-default row-margin">
-          <div class="panel-body">
-            Basic panel example
-          </div>
-        </div>
+        <movie-rating [movie]="movie"></movie-rating>
       </div>
     </div>
   </accordion-group>
