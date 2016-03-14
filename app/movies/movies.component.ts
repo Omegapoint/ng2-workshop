@@ -1,16 +1,13 @@
 import { Component, View, OnInit } from 'angular2/core';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 import { ACCORDION_DIRECTIVES, Collapse, Rating } from 'ng2-bootstrap';
-import { MoviesService } from './movies.service';
 import { Movie } from './movie';
-import { MovieRatingComponent } from './rating/movie-rating.component';
 
 @Component({
   selector: 'movies',
   templateUrl: 'app/movies/movies.component.html',
   styleUrls: ['app/movies/movies.component.css'],
-  directives: [MovieRatingComponent, ACCORDION_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, Collapse, Rating],
-  providers: [MoviesService]
+  directives: [ACCORDION_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, Collapse, Rating]
 })
 
 export class MoviesComponent implements OnInit {
@@ -20,17 +17,7 @@ export class MoviesComponent implements OnInit {
   };
   movies: Movie[] = [];
 
-  constructor(private _moviesService: MoviesService) { }
-
   ngOnInit() {
-    var x = (movies) => {
-        movies.forEach(movie => {
-          console.log("movie.rating: " + movie.rating);
-        });
-        this.movies = movies;
-    };
-    this._moviesService.getMovies()
-      .subscribe(x);
-
+    
   }
 }

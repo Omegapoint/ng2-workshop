@@ -1,14 +1,9 @@
 <h3>Lista med filmer</h3>
 <accordion [closeOthers]="oneAtATime">
-  <accordion-group *ngFor="#movie of movies" [heading]="movie.name">
+  <accordion-group heading="test">
     <div class="row">
       <div class="col-sm-12">
-        {{movie.description}}
-      </div>
-    </div>
-    <div class="row row-margin">
-      <div class="col-sm-4">
-        <movie-rating [movie]="movie"></movie-rating>
+        Rubrik
       </div>
     </div>
   </accordion-group>
