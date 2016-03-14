@@ -23,8 +23,14 @@ export class MoviesComponent implements OnInit {
   constructor(private _moviesService: MoviesService) { }
 
   ngOnInit() {
+    var x = (movies) => {
+        movies.forEach(movie => {
+          console.log("movie.rating: " + movie.rating);
+        });
+        this.movies = movies;
+    };
     this._moviesService.getMovies()
-      .subscribe(movies => this.movies = movies);
+      .subscribe(x);
 
   }
 }

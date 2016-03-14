@@ -1,6 +1,6 @@
 import {API_URL} from '../conf';
 import {Injectable} from 'angular2/core';
-import {Http, Response, HTTP_PROVIDERS} from "angular2/http";
+import {Http, Headers, Response, HTTP_PROVIDERS} from "angular2/http";
 import {Movie} from './movie';
 
 import 'rxjs/add/operator/map';
@@ -16,7 +16,7 @@ export class MoviesService {
     return result
       .map(res => res.json())
       .mergeAll()
-      .map(movie => <Movie>{id: movie.id, name: movie.name, description: movie.description, collapsed: true})
+      .map(movie => <Movie>{id: movie.id, name: movie.name, description: movie.description, collapsed: true, rating: movie.rating})
       .toArray()
   }
 
