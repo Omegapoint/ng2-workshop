@@ -1,9 +1,9 @@
-import {Rating} from './rating';
+import {IRating} from './rating';
 
 export interface Movie {
   id: number,
   name: string,
   description: string,
   collapsed: boolean,
-  rating?: Rating
+  rating?: IRating
 }

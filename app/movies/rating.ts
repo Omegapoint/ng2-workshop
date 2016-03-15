@@ -1,4 +1,4 @@
-export interface Rating {
-  comment: string,
-  rating: number
+export interface IRating {
+  comment?: string,
+  rating?: number
 }

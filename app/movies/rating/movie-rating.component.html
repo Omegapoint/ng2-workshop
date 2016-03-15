@@ -2,11 +2,11 @@
 <div [collapse]="movie.collapsed" class="panel panel-default row-margin">
   <div class="panel-body">
     <label>Kommentar</label>
-    <textarea class="form-control" cols="2" rows="3">
+    <textarea [(ngModel)]="movie.rating.comment" class="form-control" cols="2" rows="3">
     </textarea>
     <br>
     <label>Rating:&nbsp;</label>
-    <rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"
+    <rating [(ngModel)]="movie.rating.rating" [max]="max" [readonly]="isReadonly"
             (onHover)="hoveringOver($event)" (onLeave)="resetStar($event)"
             [titles]="['one','two','three']">
     </rating>
@@ -16,7 +16,7 @@
     </span>
   </div>
   <div class="panel-footer">
-      <button class="btn btn-primary">OK</button>
+      <button class="btn btn-primary" (click)="addRating()">OK</button>
       <button class="btn btn-default" (click)="movie.collapsed = !movie.collapsed">Cancel</button>
   </div>
 </div>

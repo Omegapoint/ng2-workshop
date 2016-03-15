@@ -8,7 +8,7 @@
     </div>
     <div class="row row-margin">
       <div class="col-sm-4">
-        <movie-rating [movie]="movie"></movie-rating>
+        <movie-rating [movie]="movie" (newRating)="getMovies()"></movie-rating>
       </div>
     </div>
   </accordion-group>
