@@ -1,6 +1,7 @@
 import { Component } from 'angular2/core';
 import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
 import { MoviesComponent } from './movies/movies.component';
+import {RestResource} from './util/RestResource';
 
 @Component({
   selector: 'my-app',
@@ -18,7 +19,8 @@ import { MoviesComponent } from './movies/movies.component';
     </div>
   </div>
   `,
-  directives: [Alert, MoviesComponent]
+  directives: [Alert, MoviesComponent],
+  providers: [RestResource]
 })
 
 export class AppComponent {
