@@ -17,7 +17,7 @@ export class RestResource {
 
     return Observable.fromPromise<Response>(this.authenticate().then(token => {
         var headers = new Headers();
-        headers.append('x-access-token', token);
+        headers.append('Authorization', 'Bearer ' + token);
         switch (method) {
           case METHOD.GET:
             return this.get(url, headers).toPromise();
