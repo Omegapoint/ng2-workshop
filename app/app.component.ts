@@ -10,7 +10,12 @@ import {Cookie} from 'ng2-cookies/ng2-cookies';
   selector: 'my-app',
   template: `
   <div class="container">
-    <div class="row" style="margin-top:20px">
+    <div class="row" style="margin-top:5px">
+      <div class="col-sm-12">
+        <button [hidden]="loggedout" class="btn btn-primary pull-right" (click)="logout()">Logout</button>
+      </div>
+    </div>
+    <div class="row" style="margin-top:5px">
       <div class="col-sm-12">
         <alert type="info">{{title}}</alert>
       </div>
@@ -18,6 +23,13 @@ import {Cookie} from 'ng2-cookies/ng2-cookies';
     <router-outlet></router-outlet>
   </div>
   `,
+  styles: [
+    `
+      .btn[hidden] {
+        display: none;
+      }
+    `
+  ],
   directives: [ROUTER_DIRECTIVES, Alert, MoviesComponent],
   providers: [ROUTER_PROVIDERS, RestResource]
 })
@@ -36,8 +48,13 @@ import {Cookie} from 'ng2-cookies/ng2-cookies';
 ])
 export class AppComponent implements OnInit {
   title = 'Angular 2.0 Workshop';
+  loggedout = Cookie.getCookie('auth-token') == null;
 
-  constructor(private _router:Router) {}
+  constructor(private _router:Router) {
+    _router.subscribe(route => {
+        this.loggedout = Cookie.getCookie('auth-token') == null;
+    });
+  }
 
   ngOnInit() {
     let cookie = Cookie.getCookie('auth-token');
@@ -46,5 +63,10 @@ export class AppComponent implements OnInit {
     } else {
       this._router.navigate(['Login']);
     }
+  }
+
+  logout() {
+    Cookie.deleteCookie('auth-token');
+    this._router.navigate(['Login']);
   }
 }
