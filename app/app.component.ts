@@ -1,7 +1,10 @@
-import { Component } from 'angular2/core';
+import { Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import { Component, OnInit } from 'angular2/core';
 import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
 import { MoviesComponent } from './movies/movies.component';
 import {RestResource} from './util/RestResource';
+import {LoginComponent} from './login/login.component';
+import {Cookie} from 'ng2-cookies/ng2-cookies';
 
 @Component({
   selector: 'my-app',
@@ -12,17 +15,36 @@ import {RestResource} from './util/RestResource';
         <alert type="info">{{title}}</alert>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <movies></movies>
-      </div>
-    </div>
+    <router-outlet></router-outlet>
   </div>
   `,
-  directives: [Alert, MoviesComponent],
-  providers: [RestResource]
+  directives: [ROUTER_DIRECTIVES, Alert, MoviesComponent],
+  providers: [ROUTER_PROVIDERS, RestResource]
 })
 
-export class AppComponent {
+@RouteConfig([
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginComponent
+  },
+  {
+    path: '/movies',
+    name: 'Movies',
+    component: MoviesComponent
+  }
+])
+export class AppComponent implements OnInit {
   title = 'Angular 2.0 Workshop';
+
+  constructor(private _router:Router) {}
+
+  ngOnInit() {
+    let cookie = Cookie.getCookie('auth-token');
+    if (cookie != null) {
+      this._router.navigate(['Movies']);
+    } else {
+      this._router.navigate(['Login']);
+    }
+  }
 }
