@@ -13,17 +13,34 @@ import 'rxjs/add/operator/toArray'
 export class MoviesService {
   constructor(private _http:Http, private _restResource:RestResource) {}
 
-  private transformRating = (rating) => {
-      if (!rating) {
-        return <IRating>{rating: 1};
-      } else {
-        return <IRating>{comment: rating.comment, rating: rating.rating};
-      }
+  private transformRating = (ratings) => {
+      return ratings.map(rating => <IRating>{comment: rating.comment, rating: rating.rating});
   };
 
   private sortResult = (movies) => {
-      return movies.sort((e1, e2) => e2.rating.rating - e1.rating.rating);
+      let accFn = (rating) => {
+          let rate = rating.reduce( (prev, cur) => { return {rating: prev.rating + cur.rating} }, {rating: 0});
+          return rate.rating;
+      };
+      return movies.sort((e1, e2) => {
+        let rate1 = accFn(e2.rating);
+        let rate2 = accFn(e1.rating)
+        let rate1_length = e2.rating.length;
+        let rate2_length = e1.rating.length;
+        rate1 = rate1_length > 0 ? rate1/rate1_length : rate1;
+        rate2 = rate2_length > 0 ? rate2/rate2_length : rate2;
+        return rate1 - rate2;
+      });
   };
+
+  getRatingForMovie(movie: Movie) {
+    let accFn = (rating) => {
+        let rate = rating.reduce( (prev, cur) => { return {rating: prev.rating + cur.rating} }, {rating: 0});
+        return rate.rating;
+    };
+    let rate1 = accFn(movie.rating);
+    return movie.rating.length > 0 ? rate1/movie.rating.length : rate1;
+  }
 
   getMovies() {
     let result = this._restResource.request(METHOD.GET, API_URL + '/movies');

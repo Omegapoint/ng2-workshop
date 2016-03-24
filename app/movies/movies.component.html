@@ -2,7 +2,18 @@
   <div class="col-sm-12">
     <h3>Lista med filmer</h3>
     <accordion [closeOthers]="oneAtATime">
-      <accordion-group *ngFor="#movie of movies" [heading]="movie.name">
+      <accordion-group *ngFor="#movie of movies">
+        <div accordion-heading>
+          <div class="row">
+            <div class="col-sm-6">
+              {{movie.name}}
+            </div>
+            <div class="col-sm-6">
+              <span class="pull-right">{{getRating(movie)}}</span>
+            </div>
+          </div>
+
+        </div>
         <div class="row">
           <div class="col-sm-12">
             {{movie.description}}

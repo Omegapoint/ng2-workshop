@@ -2,11 +2,11 @@
 <div [collapse]="movie.collapsed" class="panel panel-default row-margin">
   <div class="panel-body">
     <label>Kommentar</label>
-    <textarea [(ngModel)]="movie.rating.comment" class="form-control" cols="2" rows="3">
+    <textarea [(ngModel)]="movieRating.comment" class="form-control" cols="2" rows="3">
     </textarea>
     <br>
     <label>Rating:&nbsp;</label>
-    <rating [(ngModel)]="movie.rating.rating" [max]="max" [readonly]="isReadonly"
+    <rating [(ngModel)]="movieRating.rating" [max]="max" [readonly]="isReadonly"
             (onHover)="hoveringOver($event)" (onLeave)="resetStar($event)"
             [titles]="['one','two','three']">
     </rating>

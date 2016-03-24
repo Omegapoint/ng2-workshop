@@ -26,6 +26,10 @@ export class MoviesComponent implements OnInit {
     this.getMovies();
   }
 
+  getRating(movie: Movie) {
+      return this._moviesService.getRatingForMovie(movie);
+  }
+
   getMovies() {
     this._moviesService.getMovies()
       .subscribe(movies => this.movies = movies);

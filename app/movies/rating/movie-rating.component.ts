@@ -17,6 +17,7 @@ import { MoviesService } from '../movies.service';
 export class MovieRatingComponent {
   movie: Movie;
   newRating: EventEmitter<any>;
+  movieRating: IRating = {comment: '', rating: 1};
 
   private x:number = 5;
   private y:number = 2;
@@ -49,8 +50,7 @@ export class MovieRatingComponent {
 
   private addRating() {
     let id = this.movie.id;
-    let rating:IRating = {comment: this.movie.rating.comment, rating: this.movie.rating.rating};
-    this._moviesService.addRating(id, rating)
+    this._moviesService.addRating(id, this.movieRating)
     .subscribe(
       data => console.log("statusCode after update: " + data.status),
       err => console.log("error: " + JSON.stringify(err)),

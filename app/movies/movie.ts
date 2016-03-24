@@ -5,5 +5,5 @@ export interface Movie {
   name: string,
   description: string,
   collapsed: boolean,
-  rating?: IRating
+  rating?: IRating []
 }
