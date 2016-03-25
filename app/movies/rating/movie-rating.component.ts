@@ -1,4 +1,5 @@
 import { Component, View, OnInit, EventEmitter } from 'angular2/core';
+import { Router } from 'angular2/router';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 import { ACCORDION_DIRECTIVES, Collapse, Rating } from 'ng2-bootstrap';
 import { Movie } from '../movie';
@@ -35,7 +36,7 @@ export class MovieRatingComponent {
     {stateOff: 'glyphicon-off'}
   ];
 
-  constructor(private _moviesService: MoviesService) {
+  constructor(private _router: Router, private _moviesService: MoviesService) {
     this.newRating = new EventEmitter();
   }
 
@@ -56,5 +57,9 @@ export class MovieRatingComponent {
       err => console.log("error: " + JSON.stringify(err)),
       () => this.newRating.next(null)
     );
+  }
+
+  showRatings() {
+    this._router.navigate(['MovieShowRating', { id: this.movie.id }]);
   }
 }

@@ -14,7 +14,7 @@ export class MoviesService {
   constructor(private _http:Http, private _restResource:RestResource) {}
 
   private transformRating = (ratings) => {
-      return ratings.map(rating => <IRating>{comment: rating.comment, rating: rating.rating});
+      return ratings.map(rating => <IRating>{id: rating.id, comment: rating.comment, rating: rating.rating});
   };
 
   private sortResult = (movies) => {
@@ -53,13 +53,17 @@ export class MoviesService {
       .map(movies => this.sortResult(movies));
   }
 
+  getMovieById(id: number) {
+    let result = this._restResource.request(METHOD.GET, `${API_URL}/movies/${id}`);
+    return result.map(res => res.json());
+  }
+
   addRating(id: number, rating: IRating) {
     var body = "comment=" + rating.comment + "&rating=" + rating.rating;
-    /*var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return this._http.put(API_URL + '/movies/' + id + '/rating', body, {
-      headers: headers
-    });*/
     return this._restResource.request(METHOD.PUT, API_URL + '/movies/' + id + '/rating', body);
+  }
+
+  deleteRating(id: number, rating: IRating) {
+    return this._restResource.request(METHOD.DELETE, `${API_URL}/movies/${id}/rating/${rating.id}`);
   }
 }

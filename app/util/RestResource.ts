@@ -23,6 +23,8 @@ export class RestResource {
       case METHOD.PUT:
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.put(url, headers, body);
+      case METHOD.DELETE:    
+        return this.delete(url, headers);
     }
   }
 
@@ -36,6 +38,13 @@ export class RestResource {
       return this._http.put(url, body, {
         headers: headers
       });
+  }
+
+  private delete(url, headers) {
+    this._http.delete
+    return this._http.delete(url, {
+      headers: headers
+    });
   }
 
 }

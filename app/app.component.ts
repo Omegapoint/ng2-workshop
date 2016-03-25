@@ -5,6 +5,7 @@ import { MoviesComponent } from './movies/movies.component';
 import {RestResource} from './util/RestResource';
 import {LoginComponent} from './login/login.component';
 import {Cookie} from 'ng2-cookies/ng2-cookies';
+import {MovieShowRatingComponent} from './movies/rating/movie-show-rating.component';
 
 @Component({
   selector: 'my-app',
@@ -44,6 +45,11 @@ import {Cookie} from 'ng2-cookies/ng2-cookies';
     path: '/movies',
     name: 'Movies',
     component: MoviesComponent
+  },
+  {
+    path: '/movies/:id',
+    name: 'MovieShowRating',
+    component: MovieShowRatingComponent
   }
 ])
 export class AppComponent implements OnInit {

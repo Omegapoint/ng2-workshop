@@ -4,15 +4,8 @@
     <accordion [closeOthers]="oneAtATime">
       <accordion-group *ngFor="#movie of movies">
         <div accordion-heading>
-          <div class="row">
-            <div class="col-sm-6">
-              {{movie.name}}
-            </div>
-            <div class="col-sm-6">
-              <span class="pull-right">{{getRating(movie)}}</span>
-            </div>
-          </div>
-
+          {{movie.name}}
+          <span class="pull-right">{{getRating(movie)}}</span>
         </div>
         <div class="row">
           <div class="col-sm-12">
