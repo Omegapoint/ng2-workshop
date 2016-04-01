@@ -33,7 +33,7 @@ System.config({
     "core-js": "npm:core-js@1.2.6",
     "es6-shim": "github:es-shims/es6-shim@0.35.0",
     "ng2-bootstrap": "npm:ng2-bootstrap@1.0.5",
-    "ng2-cookies": "npm:ng2-cookies@0.1.4",
+    "ng2-cookies": "npm:ng2-cookies@0.1.5",
     "reflect-metadata": "npm:reflect-metadata@0.1.3",
     "rxjs": "npm:rxjs@5.0.0-beta.2",
     "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.5.6",
