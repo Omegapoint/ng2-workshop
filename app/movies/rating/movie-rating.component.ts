@@ -5,11 +5,13 @@ import { ACCORDION_DIRECTIVES, Collapse, Rating } from 'ng2-bootstrap';
 import { Movie } from '../movie';
 import { IRating } from '../rating';
 import { MoviesService } from '../movies.service';
+import template from './movie-rating.component.html!text';
+import stylesheet from '../movies.component.css!text';
 
 @Component({
   selector: 'movie-rating',
-  templateUrl: 'app/movies/rating/movie-rating.component.html',
-  styleUrls: ['app/movies/movies.component.css'],
+  template: template,
+  styles: [stylesheet],
   directives: [ACCORDION_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, Collapse, Rating],
   inputs: ['movie'],
   events: ['newRating']

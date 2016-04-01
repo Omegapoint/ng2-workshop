@@ -4,10 +4,11 @@ import { Router } from 'angular2/router';
 import {RouteParams} from 'angular2/router';
 import {MoviesService} from '../movies.service';
 import { IRating } from '../rating';
+import template from './movie-show-rating.component.html!text';
 
 @Component({
   selector: 'show-rating',
-  templateUrl: 'app/movies/rating/movie-show-rating.component.html',
+  template: template,
   providers: [MoviesService]
 })
 export class MovieShowRatingComponent implements OnInit {
