@@ -8,7 +8,8 @@ module.exports = function (config) {
     basePath: '.',
 
     files: [
-      'node_modules/traceur/bin/traceur-runtime.js' // Required by PhantomJS2, otherwise it shouts ReferenceError: Can't find variable: require
+      'node_modules/traceur/bin/traceur-runtime.js', // Required by PhantomJS2, otherwise it shouts ReferenceError: Can't find variable: require
+      'node_modules/angular2/bundles/angular2-polyfills.min.js'
     ],
 
     // frameworks to use
@@ -18,9 +19,8 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     jspm: {
-      
+
       loadFiles: [
-        'app/init.spec.ts',
         'app/**/*.spec.ts'
       ],
       serveFiles: [
