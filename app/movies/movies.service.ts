@@ -10,7 +10,7 @@ export class MoviesService {
   constructor(private _http:Http) {}
 
   getMovies() {
-  
+    return null;
   }
 
 }
