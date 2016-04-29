@@ -113,10 +113,6 @@ System.config({
       "browserify-zlib": "npm:browserify-zlib@0.1.4"
     },
     "npm:angular2@2.0.0-beta.8": {
-      "crypto": "github:jspm/nodelibs-crypto@0.1.0",
-      "es6-promise": "npm:es6-promise@3.1.2",
-      "es6-shim": "npm:es6-shim@0.33.13",
-      "process": "github:jspm/nodelibs-process@0.1.2",
       "reflect-metadata": "npm:reflect-metadata@0.1.2",
       "rxjs": "npm:rxjs@5.0.0-beta.2",
       "zone.js": "npm:zone.js@0.5.15"
@@ -284,9 +280,6 @@ System.config({
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:es6-promise@3.1.2": {
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:es6-shim@0.33.13": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:evp_bytestokey@1.0.0": {

@@ -1,7 +1,7 @@
 import { Component } from 'angular2/core';
 import { User } from './user';
 import {API_URL} from '../conf';
-import {Http, Headers, Response, HTTP_PROVIDERS} from "angular2/http";
+import {Http, Headers, Response} from "angular2/http";
 import {Cookie} from 'ng2-cookies/ng2-cookies';
 import { Router } from 'angular2/router';
 
