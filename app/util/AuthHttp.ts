@@ -1,5 +1,5 @@
 
-import {USER, PASSWORD, API_URL} from '../conf';
+import {API_URL} from '../conf';
 import {Injectable} from 'angular2/core';
 import {Http, Headers, Response} from "angular2/http";
 import {METHOD} from './method';
