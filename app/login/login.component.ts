@@ -27,9 +27,7 @@ import { Router } from 'angular2/router';
           </div>
         </div>
         <button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Submit</button>
-        <div [hidden]="!authFailure" class="alert alert-danger" style="margin-top:10px">
-          Invalid username or password, please try again.
-        </div>
+
       </form>
     </div>
   </div>
@@ -55,20 +53,6 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    var body = "user_id=" + this.user.name + "&password=" + this.user.password;
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    this._http.post(API_URL + '/authenticate', body, {
-      headers: headers
-    })
-    .map(response => response.json())
-    .subscribe(
-      data => {
-        Cookie.setCookie('auth-token', data.token);
-        this._router.navigate(['Movies']);
-      },
-      err => this.authFailure = true
-    );
-    this.submitted = true;
+
   }
 }
