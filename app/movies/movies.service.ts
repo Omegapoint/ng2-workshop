@@ -3,7 +3,7 @@ import {Injectable} from 'angular2/core';
 import {Http, Headers, Response, HTTP_PROVIDERS} from "angular2/http";
 import {Movie} from './movie';
 import {IRating} from './rating';
-import {RestResource} from '../util/RestResource';
+import {AuthHttp} from '../util/AuthHttp';
 import {METHOD} from '../util/method';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeAll'
@@ -11,7 +11,7 @@ import 'rxjs/add/operator/toArray'
 
 @Injectable()
 export class MoviesService {
-  constructor(private _http:Http, private _restResource:RestResource) {}
+  constructor(private _http:Http, private _authHttp:AuthHttp) {}
 
   private transformRating = (ratings) => {
       return ratings.map(rating => <IRating>{id: rating.id, comment: rating.comment, rating: rating.rating});
@@ -43,7 +43,7 @@ export class MoviesService {
   }
 
   getMovies() {
-    let result = this._restResource.request(METHOD.GET, API_URL + '/movies');
+    let result = this._authHttp.request(METHOD.GET, API_URL + '/movies');
     return result
       .map(res => res.json())
       .mergeAll()
@@ -54,16 +54,16 @@ export class MoviesService {
   }
 
   getMovieById(id: number) {
-    let result = this._restResource.request(METHOD.GET, `${API_URL}/movies/${id}`);
+    let result = this._authHttp.request(METHOD.GET, `${API_URL}/movies/${id}`);
     return result.map(res => res.json());
   }
 
   addRating(id: number, rating: IRating) {
     var body = "comment=" + rating.comment + "&rating=" + rating.rating;
-    return this._restResource.request(METHOD.PUT, API_URL + '/movies/' + id + '/rating', body);
+    return this._authHttp.request(METHOD.PUT, API_URL + '/movies/' + id + '/rating', body);
   }
 
   deleteRating(id: number, rating: IRating) {
-    return this._restResource.request(METHOD.DELETE, `${API_URL}/movies/${id}/rating/${rating.id}`);
+    return this._authHttp.request(METHOD.DELETE, `${API_URL}/movies/${id}/rating/${rating.id}`);
   }
 }

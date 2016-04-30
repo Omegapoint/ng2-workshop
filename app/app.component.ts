@@ -2,7 +2,7 @@ import { Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angula
 import { Component, OnInit } from 'angular2/core';
 import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
 import { MoviesComponent } from './movies/movies.component';
-import {RestResource} from './util/RestResource';
+import {AuthHttp} from './util/AuthHttp';
 import {LoginComponent} from './login/login.component';
 import {Cookie} from 'ng2-cookies/ng2-cookies';
 import {MovieShowRatingComponent} from './movies/rating/movie-show-rating.component';
@@ -32,7 +32,7 @@ import {MovieShowRatingComponent} from './movies/rating/movie-show-rating.compon
     `
   ],
   directives: [ROUTER_DIRECTIVES, Alert, MoviesComponent],
-  providers: [ROUTER_PROVIDERS, RestResource]
+  providers: [ROUTER_PROVIDERS, AuthHttp]
 })
 
 @RouteConfig([

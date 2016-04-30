@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class RestResource {
+export class AuthHttp {
 
   constructor(private _http:Http) {}
 
@@ -23,7 +23,7 @@ export class RestResource {
       case METHOD.PUT:
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.put(url, headers, body);
-      case METHOD.DELETE:    
+      case METHOD.DELETE:
         return this.delete(url, headers);
     }
   }
