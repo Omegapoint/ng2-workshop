@@ -50,9 +50,7 @@ export class LoginComponent {
   submitted = false;
   authFailure = false;
 
-  constructor(private _http:Http, private _router:Router) {
-
-  }
+  constructor(private _http:Http, private _router:Router) {}
 
   onSubmit() {
     var body = "user_id=" + this.user.name + "&password=" + this.user.password;

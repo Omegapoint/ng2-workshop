@@ -1,4 +1,4 @@
-import {HTTP_PROVIDERS} from "angular2/http";
+/*import {HTTP_PROVIDERS} from "angular2/http";
 import {
   beforeEach,
   beforeEachProviders,
@@ -25,3 +25,4 @@ describe('RestResource', () => {
     expect(authHttp.request(null, null)).toBeUndefined();
   }));
 });
+*/
