@@ -1,10 +1,23 @@
-<h3>Lista med filmer</h3>
-<accordion [closeOthers]="oneAtATime">
-  <accordion-group heading="test">
-    <div class="row">
-      <div class="col-sm-12">
-        Rubrik
-      </div>
-    </div>
-  </accordion-group>
-</accordion>
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Lista med filmer</h3>
+    <accordion [closeOthers]="oneAtATime">
+      <accordion-group *ngFor="#movie of movies">
+        <div accordion-heading>
+          {{movie.name}}
+          <span class="pull-right">{{getRating(movie)}}</span>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            {{movie.description}}
+          </div>
+        </div>
+        <div class="row row-margin">
+          <div class="col-sm-4">
+            <movie-rating [movie]="movie" (newRating)="getMovies()"></movie-rating>
+          </div>
+        </div>
+      </accordion-group>
+    </accordion>
+  </div>
+</div>
