@@ -1,20 +1,22 @@
 <div class="row">
   <div class="col-sm-12">
     <h3>Lista med filmer</h3>
+    <!-- TODO lägg till ngFor för att iterera över listan med filmer -->
     <accordion [closeOthers]="oneAtATime">
-      <accordion-group *ngFor="#movie of movies">
+      <accordion-group>
         <div accordion-heading>
-          {{movie.name}}
-          <span class="pull-right">{{getRating(movie)}}</span>
+          <!-- TODO: visa namnet -->
+          <span class="pull-right"><!-- TODO visa rating --> </span>
         </div>
         <div class="row">
           <div class="col-sm-12">
-            {{movie.description}}
+            <!-- TODO visa beskrivning -->
           </div>
         </div>
         <div class="row row-margin">
           <div class="col-sm-4">
-            <movie-rating [movie]="movie" (newRating)="getMovies()"></movie-rating>
+            <!-- TODO koppla movie till barn-komponent movie-rating och vid event newRating anropa getMovies för att läsa upp filmerna igen -->
+            <movie-rating></movie-rating>
           </div>
         </div>
       </accordion-group>
