@@ -1,2 +1,2 @@
 declare var ENV;
-export const API_URL = ENV.host + '/api';
+export const API_URL = typeof ENV === 'undefined' ? '' : ENV.host + '/api';
