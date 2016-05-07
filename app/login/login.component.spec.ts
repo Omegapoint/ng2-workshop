@@ -34,7 +34,7 @@ class MockPrimaryComponent {
 
 class MockRouter {
   navigate() {
-  
+
   }
 }
 describe('LoginComponent', () => {
@@ -60,8 +60,8 @@ it('token should be set in cookie', inject([XHRBackend, LoginComponent], (mockBa
                   token: "abc"
                 }
             }
-          )));
-      });
+        )));
+    });
 
     loginComponent.onSubmit();
     expect(Cookie.getCookie('auth-token')).toBe('abc');
@@ -70,7 +70,7 @@ it('token should be set in cookie', inject([XHRBackend, LoginComponent], (mockBa
   it('authentication failure should result in an update of authFailure', inject([XHRBackend, LoginComponent], (mockBackend, loginComponent) => {
     mockBackend.connections.subscribe(connection => {
         connection.mockRespond(new ResponseOptions({status: 403}));
-      });
+    });
 
       loginComponent.onSubmit();
       expect(loginComponent.authFailure).toBeTruthy();

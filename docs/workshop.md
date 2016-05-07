@@ -27,11 +27,36 @@ vid lyckad inlogging returnerar ett giltigt token, detta sparar vi i en cookie, 
 
 ## Steg 2 - enhetstest och byggen
 Vi ska nu skriva ett enhetstest för implementationen i onSubmit. Vad vi behöver göra är att mocka ut anropet till /authenticate och sedan verifiera beteendet i våra callbacks.
+Vi kommer använda jasmine för att skriva tester, jasmine kommer med ett antal matchers. Matchers använder man i it-funktioner, som innehåller implementationen av testfallet. Här är ett exempel:
+<pre>
+expect('olle').toBe('olle');
+</pre>
 
 ### Deluppgifter
 <ol>
   <li>
-  Skapa en fil login.component.spec.ts i katalogen login, och skriv ett jasmine-test för onSubmit
+  Det finns en stub för ett test i filen login.component.spec.ts, denna ska vi nu utöka. Implementera ett testfall som verifierar att vi sparar cookien när autentisieringen går igenom.
+  För att mocka ett response från tjänsten finns det två varianter:
+  <pre>
+  //I detta fall mockar vi ett svar med data
+  mockBackend.connections.subscribe(
+      (connection: MockConnection) => {
+        connection.mockRespond(new Response(
+          new ResponseOptions({
+              body:
+                {
+                  token: "abc"
+                }
+            }
+        )));
+    });
+  </pre>
+  <pre>
+  //I detta fall mockar vi bara statusen i svaret
+  mockBackend.connections.subscribe(connection => {
+      connection.mockRespond(new ResponseOptions({status: 403}));
+  });
+  </pre>
   </li>
   <li>
   Verifiera lokalt att testet är ok genom att köra <pre>npm run test</pre>
