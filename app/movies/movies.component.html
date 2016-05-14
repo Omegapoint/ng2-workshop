@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-sm-12">
     <h3>Lista med filmer</h3>
-    <!-- TODO lägg till ngFor för att iterera över listan med filmer -->
     <accordion [closeOthers]="oneAtATime">
+      <!-- TODO lägg till ngFor för att iterera över listan med filmer -->
       <accordion-group>
         <div accordion-heading>
           <!-- TODO: visa namnet -->
@@ -15,7 +15,7 @@
         </div>
         <div class="row row-margin">
           <div class="col-sm-4">
-            <!-- TODO koppla movie till barn-komponent movie-rating och vid event newRating anropa getMovies för att läsa upp filmerna igen -->
+            <!-- TODO koppla movie till barn-komponent movie-rating -->
             <movie-rating></movie-rating>
           </div>
         </div>
