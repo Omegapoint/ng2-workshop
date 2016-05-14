@@ -30,6 +30,9 @@ Nu kan du klona git-repot:
 <pre>$ git clone git@192.168.33.10:ng2-workshop.git</pre>
 
 ## Konfigurera applikationen
+I repot finns tre grenar, master, develop och facit.
+Checka ut develop, det är den vi utgår från i labben. I facit finns alla lösningar på labbuppgifterna.
+
 Förutsättningarna är att du har följande installerat:
 
 <ul>
@@ -43,6 +46,6 @@ Förutsättningarna är att du har följande installerat:
 Du kan verifiera detta genom att i en terminal skriva node --version samt npm --version.
 Kör följande script i ng2-workshop katalogen:
 <pre>npm run setup</pre>
-Scriptet installerar alla nödvändiga moduler och det kan ta lite tid, så se till att du har en bra internetanslutning när du börjar.
+Scriptet installerar alla nödvändiga moduler och det kan ta lite tid, så se till att du har en bra internetanslutning innan du börjar.
 När installationen är klar kan du köra följande script för att starta applikationen:
 <pre>npm start</pre>
