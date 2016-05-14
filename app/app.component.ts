@@ -2,6 +2,7 @@ import { Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angula
 import { Component, OnInit } from 'angular2/core';
 import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
 import { MoviesComponent } from './movies/movies.component';
+import {MovieShowRatingComponent} from './movies/rating/movie-show-rating.component';
 import {AuthHttp} from './util/AuthHttp';
 import {LoginComponent} from './login/login.component';
 import {Cookie} from 'ng2-cookies/ng2-cookies';
@@ -44,6 +45,11 @@ import {Cookie} from 'ng2-cookies/ng2-cookies';
     path: '/movies',
     name: 'Movies',
     component: MoviesComponent
+  },
+  {
+    path: '/movies/:id',
+    name: 'MovieShowRating',
+    component: MovieShowRatingComponent
   }
 ])
 export class AppComponent implements OnInit {
