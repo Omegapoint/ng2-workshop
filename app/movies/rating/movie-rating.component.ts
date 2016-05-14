@@ -55,8 +55,6 @@ export class MovieRatingComponent {
     let id = this.movie.id;
     this._moviesService.addRating(id, this.movieRating)
     .subscribe(
-      data => console.log("statusCode after update: " + data.status),
-      err => console.log("error: " + JSON.stringify(err)),
       () => this.newRating.next(null)
     );
   }

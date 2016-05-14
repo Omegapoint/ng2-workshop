@@ -93,3 +93,40 @@ Det finns en service som är inkluderad i movies komponenten som hämtar filmer 
   Det gör man med {{ expr }}
   </li>  
 </ol>
+
+### Steg 4 - Lägg till en ny rating
+Nu ska vi göra klart movie-rating.component, som blir en barn-komponent till movie komponenten.
+I movies.component.html finns redan movie-rating inlagt som en del av repeatern, men vi måste skicka med varje movie till rating komponenten.
+Rating komponenten måste också kunna meddela movie komponenten att en ny rating har skapats, så att listan kan läsas upp igen.
+
+### Deluppgifter
+<ol>
+  <li>
+    Skicka med movie objektet till movie-rating, det kan göras med [movie]="movie"
+  </li>
+  <li>
+    I movie-rating.component, implementera addRating. När en ny rating lagts in behöver vi skapa ett event för detta, det kan vi göra med eventEmitter. Vi behöver alltså skapa en ny eventemitter i konstruktorn och när vi lagt in en ny rating via moviesService så notifierar vi movie-komponenten.
+  </li>
+  <li>
+    Skapa ett nytt event när en rating skapats med:
+    <pre> this.newRating.next(null) </pre>
+  </li>
+  <li>
+    Slutligen koppla ihop eventet som kommer från movie-rating till movie.component med:
+    <pre> (newRating)="getMovies()" </pre>
+  </li>
+</ol>
+
+### Steg 5 - Visa rating
+I denna sista del ska vi kolla på hur vi kan initiera data genom att implementera OnInit interfacet.
+### Deluppgifter
+Öppna movie-show-rating.component.ts och gör följande:
+<ol>
+  <li>
+    Implementera OnInit i MovieShowRatingComponent, metoden som ska implementeras heter ngOnInit. ngOnInit ska i sin tur anropa fetchMovies och den metoden måste också implementeras.
+  </li>
+  <li>
+    fetchMovies måste få ett id som vi ska använda för att hämta en specifik film, vi kan extrahera id:t med följande metod:
+    <pre> let id = +this._routeParams.get('id'); </pre>
+  </li>
+</ol>
