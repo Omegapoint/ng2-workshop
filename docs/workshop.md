@@ -68,9 +68,11 @@ expect('olle').toBe('olle');
   Kör jobbet, öppna sedan http://192.168.33.10/ng2-workshop/index.html
   </li>
 </ol>
+
 ## Steg 3 - Implementera lista
 När vi loggat in routas vi till komponenten movies, den ska innehålla en lista med filmer som ska presenteras i en accordion.
 Det finns en service som är inkluderad i movies komponenten som hämtar filmer och ratings, den ska vi anropa i movies komponenten.
+
 ### Deluppgifter
 <ol>
   <li>
@@ -79,8 +81,15 @@ Det finns en service som är inkluderad i movies komponenten som hämtar filmer 
     Skapa en lista i komponenten som vi sen refererar till i vyn.
   </li>
   <li>
-    I movies.component.html, lägg till ngFor direktivet så att vi kan visa listan. ngFor är "repeatern" för Angular 2.0
-    Exempel: *ngFor="let hero of heroes"
+    I movies.component.html, lägg till ngFor direktivet så att vi kan visa listan. ngFor är "repeatern" för Angular 2.0.
+    <br><br>
+    Exempel:
+     <pre> *ngFor="#box of boxes" </pre>
+    Notera att vi kommer använda den gamla syntaxen för ngFor där vi använder en referensvariabel med #box. I Angular 2.0.0-beta.17 och framåt
+    använder man så kallade template input variables med let syntax: let box of boxes. Eftersom applikationen är konfiguerad med 2.0.0-beta.8 använder vi referensvariabler med # istället.
   </li>
-
+  <li>
+  Använd sträng interpolation för att visa data från listan.
+  Det gör man med {{ expr }}
+  </li>  
 </ol>
