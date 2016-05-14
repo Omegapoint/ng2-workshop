@@ -11,19 +11,13 @@ import template from './movie-show-rating.component.html!text';
   template: template,
   providers: [MoviesService]
 })
-export class MovieShowRatingComponent implements OnInit {
+export class MovieShowRatingComponent {
   movie: Movie;
 
   constructor(private _router: Router, private _routeParams:RouteParams, private _moviesService: MoviesService) {}
 
-  ngOnInit() {
-    this.fetchMovie();
-  }
-
   private fetchMovie() {
-    let id = +this._routeParams.get('id');
-    this._moviesService.getMovieById(id)
-      .subscribe(movie => this.movie = movie);
+    
   }
 
   back() {
