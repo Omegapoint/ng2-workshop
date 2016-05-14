@@ -39,7 +39,7 @@ export class MovieRatingComponent {
   ];
 
   constructor(private _router: Router, private _moviesService: MoviesService) {
-    this.newRating = new EventEmitter();
+
   }
 
   private hoveringOver(value:number):void {
@@ -52,13 +52,7 @@ export class MovieRatingComponent {
   }
 
   private addRating() {
-    let id = this.movie.id;
-    this._moviesService.addRating(id, this.movieRating)
-    .subscribe(
-      data => console.log("statusCode after update: " + data.status),
-      err => console.log("error: " + JSON.stringify(err)),
-      () => this.newRating.next(null)
-    );
+    
   }
 
   showRatings() {
