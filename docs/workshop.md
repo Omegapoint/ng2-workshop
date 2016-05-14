@@ -68,3 +68,19 @@ expect('olle').toBe('olle');
   Kör jobbet, öppna sedan http://192.168.33.10/ng2-workshop/index.html
   </li>
 </ol>
+## Steg 3 - Implementera lista
+När vi loggat in routas vi till komponenten movies, den ska innehålla en lista med filmer som ska presenteras i en accordion.
+Det finns en service som är inkluderad i movies komponenten som hämtar filmer och ratings, den ska vi anropa i movies komponenten.
+### Deluppgifter
+<ol>
+  <li>
+    I movies.component.ts finns en metod getMovies.
+    Implementera denna metod genom att använda moviesService.getMovies.
+    Skapa en lista i komponenten som vi sen refererar till i vyn.
+  </li>
+  <li>
+    I movies.component.html, lägg till ngFor direktivet så att vi kan visa listan. ngFor är "repeatern" för Angular 2.0
+    Exempel: *ngFor="let hero of heroes"
+  </li>
+
+</ol>
