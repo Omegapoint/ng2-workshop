@@ -53,7 +53,7 @@ import {Cookie} from 'ng2-cookies/ng2-cookies';
   }
 ])
 export class AppComponent implements OnInit {
-  title = 'Angular 2.0 Workshop hoho';
+  title = 'Angular 2.0 Workshop';
   loggedout = Cookie.getCookie('auth-token') == null;
 
   constructor(private _router:Router) {
