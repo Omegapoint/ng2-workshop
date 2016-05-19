@@ -53,7 +53,7 @@ import {MovieShowRatingComponent} from './movies/rating/movie-show-rating.compon
   }
 ])
 export class AppComponent implements OnInit {
-  title = 'Angular 2.0 Workshop hoho';
+  title = 'Angular 2.0 Workshop';
   loggedout = Cookie.getCookie('auth-token') == null;
 
   constructor(private _router:Router) {
