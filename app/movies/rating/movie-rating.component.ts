@@ -13,8 +13,7 @@ import stylesheet from '../movies.component.css!text';
   template: template,
   styles: [stylesheet],
   directives: [ACCORDION_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, Collapse, Rating],
-  inputs: ['movie'],
-  events: ['newRating']
+  inputs: ['movie']
 })
 
 export class MovieRatingComponent {
@@ -52,7 +51,7 @@ export class MovieRatingComponent {
   }
 
   private addRating() {
-    
+
   }
 
   showRatings() {
