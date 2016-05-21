@@ -105,10 +105,12 @@ Rating komponenten måste också kunna meddela movie komponenten att en ny ratin
 ### Deluppgifter
 <ol>
   <li>
+    Lägg till komponenten <movie-rating> i movies.component.html
     Skicka med movie objektet till movie-rating, det kan göras med [movie]="movie"
   </li>
   <li>
-    I movie-rating.component, implementera addRating. När en ny rating lagts in behöver vi skapa ett event för detta, det kan vi göra med eventEmitter. Vi behöver alltså skapa en ny eventemitter i konstruktorn och när vi lagt in en ny rating via moviesService så notifierar vi movie-komponenten.
+    I movie-rating.component, lägg först till följande i dekoratorn: events: ['newRating'].
+    Implementera sedan addRating. När en ny rating lagts in behöver vi skapa ett event för detta, det kan vi göra med eventEmitter. Vi behöver alltså skapa en ny eventemitter i konstruktorn och när vi lagt in en ny rating via moviesService så notifierar vi movie-komponenten.
   </li>
   <li>
     Skapa ett nytt event när en rating skapats med:
