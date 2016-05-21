@@ -62,10 +62,13 @@ expect('olle').toBe('olle');
   Verifiera lokalt att testet är ok genom att köra <pre>npm run test</pre>
   </li>
   <li>
-  Checka in och pusha koden till ci-boxen. I den miljön finns jenkins installerad. Öppna http://192.168.33.10:8080, där ska ett jenkinsjobb finnas konfigurerat. Jobbet checkar ut ng2-workshop, kör tester och om alla är gröna så byggs applikationen och installeras på en apache web server.
+  Installera http-server genom: <pre>npm install -g http-server</pre>
+  kör npm run build och kopiera sedan build/app.js till testenv katalogen
   </li>
-  <li>
-  Kör jobbet, öppna sedan http://192.168.33.10/ng2-workshop/index.html
+  <li style="margin-top:5px">
+  Gå till testenv katalogen och kör:
+  <pre>http-server -o</pre>
+  Nu öppnas applikationen utan några beroenden till systemjs eller typescript.
   </li>
 </ol>
 

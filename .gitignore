@@ -3,3 +3,4 @@ jspm_packages/
 build/
 typings/
 npm-debug.log
+testenv/app.js
