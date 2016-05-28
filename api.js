@@ -31,16 +31,17 @@ var router = express.Router();              // get an instance of the express Ro
 
 var db = new loki('data.json');
 var collection = db.addCollection('movies');
-collection.insert({"id": 1, "name": "Sagan om ringen", "description": "Tolkiens saga", "rating": []});
-collection.insert({"id": 2, "name": "James Bond - Spectre", "description": "Handlar om james bond", "rating": []});
-collection.insert({"id": 3, "name": "X-men", "description": "superhjältar", "rating": []});
-collection.insert({"id": 4, "name": "Spiderman", "description": "en stor spindel", "rating": []});
-collection.insert({"id": 5, "name": "Terminator 2", "description": "klassiker med arnold", "rating": []});
-collection.insert({"id": 6, "name": "Borta med vinden", "description": "En gammal film", "rating": []});
-collection.insert({"id": 7, "name": "Sjunde inseglet", "description": "Ingmar bergman i högform", "rating": []});
-collection.insert({"id": 8, "name": "Gone in 60 seconds", "description": "actionrulle", "rating": []});
-collection.insert({"id": 9, "name": "Sällskapsresan", "description": "en rolig film för hela familjen", "rating": []});
-collection.insert({"id": 10, "name": "Titanic", "description": "en snyftare", "rating": []});
+collection.insert({"id": 1, "name": "The Shawshank Redemption", "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.", "rating": []});
+collection.insert({"id": 2, "name": "The Godfather", "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.", "rating": []});
+collection.insert({"id": 3, "name": "The Godfather II", "description": "The early life and career of Vito Corleone in 1920s New York is portrayed while his son, Michael, expands and tightens his grip on his crime syndicate stretching from Lake Tahoe, Nevada to pre-revolution 1958 Cuba.", "rating": []});
+collection.insert({"id": 4, "name": "The Dark Knight", "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.", "rating": []});
+collection.insert({"id": 5, "name": "Schindler's list", "description": "In Poland during World War II, Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.", "rating": []});
+collection.insert({"id": 6, "name": "12 angry men", "description": "A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.", "rating": []});
+collection.insert({"id": 7, "name": "Pulp fiction", "description": "The lives of two mob hit men, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.", "rating": []});
+collection.insert({"id": 8, "name": "The lord of the rings: The return of the king", "description": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.", "rating": []});
+collection.insert({"id": 9, "name": "Il buono, il brutto, il cattivo", "description": "A bounty hunting scam joins two men in an uneasy alliance against a third in a race to find a fortune in gold buried in a remote cemetery.", "rating": []});
+collection.insert({"id": 10, "name": "Fight club", "description": "An insomniac office worker, looking for a way to change his life, crosses paths with a devil-may-care soap maker, forming an underground fight club that evolves into something much, much more...", "rating": []});
+
 
 var users = db.addCollection('users');
 users.insert({"user_id": "omegapoint", "password": "mad2016"});
