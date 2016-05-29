@@ -2,7 +2,7 @@
   <h4>Kommentarer för film {{movie.name}}</h4>
   <div class="list-group">
     <div class="list-group-item" *ngFor="#rating of movie.rating">
-      <div class="row" style="margin-bottom:10px">
+      <div *ngIf="rating.canDelete" class="row" style="margin-bottom:10px">
         <div class="col-sm-12">
             <a class="pull-right" (click)="deleteRating(rating)" style="cursor:pointer">
               <i class="glyphicon glyphicon-remove-sign">
@@ -12,10 +12,16 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-10">
+        <div class="col-sm-6">
           <h4 class="list-group-item-heading">Rating</h4>
           <p class="list-group-item-text">
             {{rating.comment}}
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <h4 class="list-group-item-heading">Betygsatt av</h4>
+          <p class="list-group-item-text">
+              {{formatUser(rating.user)}}
           </p>
         </div>
         <div class="col-sm-2">
