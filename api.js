@@ -60,8 +60,6 @@ users.insert({"user_id": "omegapoint13", "password": "mad2016"});
 users.insert({"user_id": "omegapoint14", "password": "mad2016"});
 users.insert({"user_id": "omegapoint15", "password": "mad2016"});
 
-var tokenMap = db.addCollection('tokenmap');
-
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });
@@ -84,9 +82,6 @@ router.post('/authenticate', function(req, res) {
 
         });
 
-        jwt.verify(token, app.get('superSecret'), function(err, decoded) {
-            tokenMap.insert({"user_id": user, "token": decoded});
-        });
         // return the information including token as JSON
         res.json({
           success: true,
@@ -155,7 +150,12 @@ router.get('/movies', function(req, res) {
 });
 
 router.get('/movies/:movie_id', function(req, res) {
-    res.json(collection.get(req.params.movie_id));
+    var movie = collection.get(req.params.movie_id);
+    movie.rating = _.map(movie.rating, function (rating) {
+      rating.canDelete = rating.user === req.decoded.user_id;
+      return rating;
+    });
+    res.json(movie);
 });
 
 router.route('/movies/:movie_id/rating')

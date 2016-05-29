@@ -30,6 +30,11 @@ export class MovieShowRatingComponent implements OnInit {
     this._router.navigate(['Movies']);
   }
 
+  formatUser(user:string) {
+      let first:string = user.charAt(0);
+      return first.toUpperCase() + user.substring(1);
+  }
+
   deleteRating(rating:IRating) {
     this._moviesService.deleteRating(this.movie.id, rating)
     .subscribe(

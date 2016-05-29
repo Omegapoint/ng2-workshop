@@ -14,7 +14,7 @@ export class MoviesService {
   constructor(private _http:Http, private _authHttp:AuthHttp) {}
 
   private transformRating = (ratings) => {
-      return ratings.map(rating => <IRating>{id: rating.id, comment: rating.comment, rating: rating.rating});
+      return ratings.map(rating => <IRating>{id: rating.id, comment: rating.comment, rating: rating.rating, user: rating.user});
   };
 
   private sortResult = (movies) => {
