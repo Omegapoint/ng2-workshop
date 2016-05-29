@@ -44,7 +44,23 @@ collection.insert({"id": 10, "name": "Fight club", "description": "An insomniac 
 
 
 var users = db.addCollection('users');
-users.insert({"user_id": "omegapoint", "password": "mad2016"});
+users.insert({"user_id": "omegapoint1", "password": "mad2016"});
+users.insert({"user_id": "omegapoint2", "password": "mad2016"});
+users.insert({"user_id": "omegapoint3", "password": "mad2016"});
+users.insert({"user_id": "omegapoint4", "password": "mad2016"});
+users.insert({"user_id": "omegapoint5", "password": "mad2016"});
+users.insert({"user_id": "omegapoint6", "password": "mad2016"});
+users.insert({"user_id": "omegapoint7", "password": "mad2016"});
+users.insert({"user_id": "omegapoint8", "password": "mad2016"});
+users.insert({"user_id": "omegapoint9", "password": "mad2016"});
+users.insert({"user_id": "omegapoint10", "password": "mad2016"});
+users.insert({"user_id": "omegapoint11", "password": "mad2016"});
+users.insert({"user_id": "omegapoint12", "password": "mad2016"});
+users.insert({"user_id": "omegapoint13", "password": "mad2016"});
+users.insert({"user_id": "omegapoint14", "password": "mad2016"});
+users.insert({"user_id": "omegapoint15", "password": "mad2016"});
+
+var tokenMap = db.addCollection('tokenmap');
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
@@ -65,9 +81,12 @@ router.post('/authenticate', function(req, res) {
        // if user is found and password is right
         // create a token
         var token = jwt.sign(user, app.get('superSecret'), {
-        
+
         });
 
+        jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+            tokenMap.insert({"user_id": user, "token": decoded});
+        });
         // return the information including token as JSON
         res.json({
           success: true,
@@ -125,7 +144,14 @@ router.use(function(req, res, next) {
 });
 
 router.get('/movies', function(req, res) {
-  res.json(collection.find());
+  var movies = collection.find();
+  movies = _.forEach(movies, function (movie) {
+      movie.rating = _.map(movie.rating, function (rating) {
+        rating.canDelete = rating.user === req.decoded.user_id;
+        return rating;
+      });
+  });
+  res.json(movies);
 });
 
 router.get('/movies/:movie_id', function(req, res) {
@@ -140,7 +166,8 @@ router.route('/movies/:movie_id/rating')
     movie.rating.push({
       "id": id,
       "comment": req.body.comment,
-      "rating": parseInt(req.body.rating)
+      "rating": parseInt(req.body.rating),
+      "user": req.decoded.user_id
     });
     collection.update(movie);
     res.sendStatus(200);
