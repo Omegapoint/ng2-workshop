@@ -20,7 +20,7 @@ vid lyckad inlogging returnerar ett giltigt token, detta sparar vi i en cookie, 
   <li>
   I klassen LoginComponent finns en metod onSubmit, denna anropas vid submit av formuläret. Uppgiften blir att implementera denna metod.
   Skapa ett post-anrop med http servicen och skicka inloggningsuppgifter till endpointen /authenticate. Inloggningsuppgifterna kan hämtas ut från user-objektet. Om inloggningen går bra ska cookien auth-token
-  uppdateras med giltig JWT och vi navigerar till en ny route, ['Movies']. Cookien kan uppdateras med servicen Cookie, och metoden setCookie.
+  uppdateras med giltig JWT och vi navigerar till routen Movies.
   Om inloggningen misslyckas ska vi sätta authFailure till true och visa felmeddelandet. Så användaren kan försöka logga in på nytt.
   </li>
 </ol>
@@ -99,18 +99,14 @@ Det finns en service som är inkluderad i movies komponenten som hämtar filmer 
 
 ### Steg 4 - Lägg till en ny rating
 Nu ska vi göra klart movie-rating.component, som blir en barn-komponent till movie komponenten.
-I movies.component.html finns redan movie-rating inlagt som en del av repeatern, men vi måste skicka med varje movie till rating komponenten.
-Rating komponenten måste också kunna meddela movie komponenten att en ny rating har skapats, så att listan kan läsas upp igen.
 
 ### Deluppgifter
 <ol>
   <li>
-    Lägg till komponenten <movie-rating> i movies.component.html
-    Skicka med movie objektet till movie-rating, det kan göras med [movie]="movie"
+    I movies.component.html, skicka med movie objektet till movie-rating, det kan göras med [movie]="movie"
   </li>
   <li>
-    I movie-rating.component, lägg först till följande i dekoratorn: events: ['newRating'].
-    Implementera sedan addRating. När en ny rating lagts in behöver vi skapa ett event för detta, det kan vi göra med eventEmitter. Vi behöver alltså skapa en ny eventemitter i konstruktorn och när vi lagt in en ny rating via moviesService så notifierar vi movie-komponenten.
+    I movie-rating.component, implementera addRating. När en ny rating lagts in behöver vi skapa ett event för detta, det kan vi göra med eventEmitter. Vi behöver alltså skapa en ny eventemitter i konstruktorn och när vi lagt in en ny rating via moviesService så notifierar vi movie-komponenten.
   </li>
   <li>
     Skapa ett nytt event när en rating skapats med:
