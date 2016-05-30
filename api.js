@@ -44,7 +44,21 @@ collection.insert({"id": 10, "name": "Fight club", "description": "An insomniac 
 
 
 var users = db.addCollection('users');
-users.insert({"user_id": "omegapoint", "password": "mad2016"});
+users.insert({"user_id": "saman", "password": "mad2016"});
+users.insert({"user_id": "mathias", "password": "mad2016"});
+users.insert({"user_id": "ashkan", "password": "mad2016"});
+users.insert({"user_id": "alexander", "password": "mad2016"});
+users.insert({"user_id": "dan", "password": "mad2016"});
+users.insert({"user_id": "dana", "password": "mad2016"});
+users.insert({"user_id": "christoffer", "password": "mad2016"});
+users.insert({"user_id": "marcus", "password": "mad2016"});
+users.insert({"user_id": "tobias", "password": "mad2016"});
+users.insert({"user_id": "nicholas", "password": "mad2016"});
+users.insert({"user_id": "ari", "password": "mad2016"});
+users.insert({"user_id": "fredrik", "password": "mad2016"});
+users.insert({"user_id": "olle", "password": "mad2016"});
+users.insert({"user_id": "omegapoint1", "password": "mad2016"});
+users.insert({"user_id": "omegapoint2", "password": "mad2016"});
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
