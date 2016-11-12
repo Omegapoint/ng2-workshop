@@ -1,5 +1,6 @@
-import { bootstrap } from 'angular2/platform/browser';
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {AppComponent} from './app.component';
+import 'zone.js/dist/zone';
+import 'reflect-metadata';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app.module';
 
-bootstrap(AppComponent, [HTTP_PROVIDERS]);
+platformBrowserDynamic().bootstrapModule(AppModule);

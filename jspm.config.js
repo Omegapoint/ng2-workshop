@@ -54,7 +54,8 @@ SystemJS.config({
       "angular2-in-memory-web-api": "index.d.ts",
       "json-typescript-mapper": "index.d.ts",
       "typescript-collections": "dist/lib/index.d.ts",
-      "moment": "moment.d.ts"
+      "moment": "moment.d.ts",
+      "ng2-cookies": "index.d.ts"
     }
   },
   packages: {
@@ -101,6 +102,7 @@ SystemJS.config({
     "github:*/*.json"
   ],
   map: {
+    "ng2-cookies": "npm:ng2-cookies@1.0.3",
     "moment": "npm:moment@2.15.1",
     "es6-shim": "github:es-shims/es6-shim@0.35.1",
     "@angular/router": "npm:@angular/router@3.0.1",

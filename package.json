@@ -44,6 +44,7 @@
     "karma-uiuxengineering-jspm": "^3.2.0",
     "moment": "^2.15.1",
     "ng2-bootstrap": "^1.1.14",
+    "ng2-cookies": "^1.0.3",
     "open": "0.0.5",
     "phantomjs-prebuilt": "^2.1.7",
     "rxjs": "^5.0.0-beta.12",
@@ -71,6 +72,7 @@
       "json-typescript-mapper": "npm:json-typescript-mapper@^1.0.5",
       "moment": "npm:moment@2.15.1",
       "ng2-bootstrap": "npm:ng2-bootstrap@^1.1.14",
+      "ng2-cookies": "npm:ng2-cookies@^1.0.3",
       "scss": "mobilexag/plugin-sass@^0.4.6",
       "typescript-collections": "npm:typescript-collections@^1.2.3"
     },
