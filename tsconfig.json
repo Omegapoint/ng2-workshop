@@ -1,17 +1,13 @@
-  {
-   "compilerOptions": {
-      "target": "es5",
-      "module": "system",
-      "moduleResolution": "node",
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "noImplicitAny": false
-    },
-    "exclude": [
-      "jspm_packages",
-      "node_modules",
-      "typings/main.d.ts",
-      "typings/main/**"
-    ],
-    "compileOnSave": false
-  }
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "rootDir": "."
+  },
+  "compileOnSave": false,
+  "files": [
+    "./html/_references.d.ts",
+    "./app/bootstrap.ts"
+  ]
+}

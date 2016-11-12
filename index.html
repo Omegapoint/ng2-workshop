@@ -1,35 +1,36 @@
 <!doctype html>
 <html>
-  <head>
-    <base href="/">
-    <title>Angular 2.0, Typescript, JSPM</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="node_modules/angular2/bundles/angular2-polyfills.min.js"></script>
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
-    <script>
-      var ENV = (function () {
-          return {
-              host: 'https://dry-brook-76761.herokuapp.com'
-              //host: 'http://localhost:5000'
-          };
-      }());
-    </script>
-  </head>
-  <body>
-    <!-- this will be our entry component for the application -->
-    <my-app></my-app>
-    <script>
-      var readyForMainLoad;
-      if (location.origin.match(/localhost/)) {
-        System.trace = true
-        readyForMainLoad = System.import('systemjs-hot-reloader').then(function(HotReloader) {
-          hr = new HotReloader.default('http://localhost:9089');
-        });
-      }
-      Promise.resolve(readyForMainLoad).then(function() {
-        System.import("app").then(function(){ console.log("running") });
-      });
-    </script>
-  </body>
+<head>
+  <title>Angular 2 workshop</title>
+  <base href="/">
+  <script src="jspm_packages/system.js"></script>
+  <script src="jspm.config.js"></script>
+</head>
+<body>
+
+<my-app>Loading...</my-app>
+<script>
+  var readyForMainLoad;
+  var hr;
+  var hotReloaderService;
+
+  /**
+   * 1. Load the hot reloader service
+   * 2. After the hot reloader has been loaded, but not started, import the application source
+   * 3. Now start up the hot reloader
+   */
+  System.trace = true;
+  readyForMainLoad = System.import('systemjs-hot-reloader').then(function(HotReloader){
+    hotReloaderService = HotReloader;
+  });
+
+  Promise.resolve(readyForMainLoad).then(function() {
+    System.import('./app/styles/main.scss!');
+    System.import('app').then(function() {
+      console.log('running');
+      hr = new hotReloaderService.default('http://localhost:9089');
+    });
+  });
+</script>
+</body>
 </html>

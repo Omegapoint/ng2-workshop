@@ -1,0 +1,23 @@
+//Import the bootstrap theme
+
+$icon-font-path: "/app/assets/fonts/" !default;
+
+@import 'jspm:bootstrap-sass/assets/stylesheets/bootstrap';
+
+
+$fa-font-path: "/app/assets/fonts" !default;
+
+//Import all font-awesome stuff
+@import "jspm:font-awesome/scss/variables";
+@import "jspm:font-awesome/scss/mixins";
+@import "jspm:font-awesome/scss/path";
+@import "jspm:font-awesome/scss/core";
+@import "jspm:font-awesome/scss/larger";
+@import "jspm:font-awesome/scss/fixed-width";
+@import "jspm:font-awesome/scss/list";
+@import "jspm:font-awesome/scss/bordered-pulled";
+@import "jspm:font-awesome/scss/animated";
+@import "jspm:font-awesome/scss/rotated-flipped";
+@import "jspm:font-awesome/scss/stacked";
+@import "jspm:font-awesome/scss/icons";
+@import "jspm:font-awesome/scss/screen-reader";
