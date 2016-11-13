@@ -6,6 +6,8 @@ import { HttpModule }    from '@angular/http';
 import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AppComponent }  from './app.component';
 import {RouterModule} from "@angular/router";
+import {LoginComponent} from "./login/login.component";
+import {LoginModule} from "./login/login.module";
 
 @NgModule({
     imports: [
@@ -13,8 +15,12 @@ import {RouterModule} from "@angular/router";
         FormsModule,
         Ng2BootstrapModule,
         HttpModule,
+        LoginModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: '/foo', pathMatch: 'full' }
+            { path: 'login', component: LoginComponent},
+           /* { path: 'movies', component: MoviesComponent},
+            { path: 'movies/:id', component: MovieShowRatingComponent}*/
+            { path: '', redirectTo: '/login', pathMatch: 'full' }
         ])
     ],
     declarations: [ AppComponent ],

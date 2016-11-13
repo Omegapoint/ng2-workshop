@@ -25,7 +25,9 @@ import {Router, NavigationEnd} from "@angular/router";
         <alert type="info">{{title}}</alert>
       </div>
     </div>
+    <router-outlet></router-outlet>
   </div>
+  
   `,
   styles: [
     `
