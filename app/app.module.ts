@@ -8,6 +8,8 @@ import { AppComponent }  from './app.component';
 import {RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {LoginModule} from "./login/login.module";
+import {MoviesComponent} from "./movies/movies.component";
+import {MoviesModule} from "./movies/movies.module";
 
 @NgModule({
     imports: [
@@ -16,10 +18,11 @@ import {LoginModule} from "./login/login.module";
         Ng2BootstrapModule,
         HttpModule,
         LoginModule,
+        MoviesModule,
         RouterModule.forRoot([
             { path: 'login', component: LoginComponent},
-           /* { path: 'movies', component: MoviesComponent},
-            { path: 'movies/:id', component: MovieShowRatingComponent}*/
+            { path: 'movies', component: MoviesComponent},
+            /*{ path: 'movies/:id', component: MovieShowRatingComponent}*/
             { path: '', redirectTo: '/login', pathMatch: 'full' }
         ])
     ],

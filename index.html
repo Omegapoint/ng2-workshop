@@ -5,6 +5,14 @@
   <base href="/">
   <script src="jspm_packages/system.js"></script>
   <script src="jspm.config.js"></script>
+  <script>
+    var ENV = (function () {
+      return {
+        host: 'https://dry-brook-76761.herokuapp.com'
+        //host: 'http://localhost:5000'
+      };
+    }());
+  </script>
 </head>
 <body>
 
@@ -25,11 +33,13 @@
   });
 
   Promise.resolve(readyForMainLoad).then(function() {
-    System.import('./app/styles/main.scss!');
-    System.import('app').then(function() {
-      console.log('running');
-      hr = new hotReloaderService.default('http://localhost:9089');
+    System.import('./app/styles/main.scss!').then(function () {
+      System.import('app').then(function() {
+        console.log('running');
+        hr = new hotReloaderService.default('http://localhost:9089');
+      });
     });
+
   });
 </script>
 </body>

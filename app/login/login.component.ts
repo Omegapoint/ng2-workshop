@@ -1,7 +1,7 @@
 import { User } from './user';
 import {API_URL} from '../conf';
 import {Cookie} from 'ng2-cookies/ng2-cookies';
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Http, Headers} from "@angular/http";
 import {Router} from "@angular/router";
 
@@ -47,7 +47,7 @@ import {Router} from "@angular/router";
   `]
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   user: User = {name: '', password: ''};
   submitted = false;
   authFailure = false;
@@ -65,10 +65,20 @@ export class LoginComponent {
     .subscribe(
       data => {
         Cookie.set('auth-token', data.token);
-        this._router.navigate(['Movies']);
+        this._router.navigate(['movies']);
       },
       err => this.authFailure = true
     );
     this.submitted = true;
+  }
+
+  public ngOnInit() : void {
+    console.log("hello");
+    let cookie = Cookie.get('auth-token');
+    if (cookie != null) {
+      this._router.navigate(['movies']);
+    } else {
+      this._router.navigate(['login']);
+    }
   }
 }

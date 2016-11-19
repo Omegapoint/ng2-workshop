@@ -2,7 +2,7 @@
   <div class="col-sm-12">
     <h3>Lista med filmer</h3>
     <accordion [closeOthers]="oneAtATime">
-      <accordion-group *ngFor="#movie of movies">
+      <accordion-group *ngFor="let movie of movies">
         <div accordion-heading>
           {{movie.name}}
           <span class="pull-right">{{getRating(movie)}}</span>
@@ -14,7 +14,7 @@
         </div>
         <div class="row row-margin">
           <div class="col-sm-4">
-            <movie-rating [movie]="movie" (newRating)="getMovies()"></movie-rating>
+            <!-- <movie-rating [movie]="movie" (newRating)="getMovies()"></movie-rating> -->
           </div>
         </div>
       </accordion-group>

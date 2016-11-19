@@ -38,7 +38,7 @@ import {Router, NavigationEnd} from "@angular/router";
   ]
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Angular 2.0 Workshop';
   loggedout = Cookie.get('auth-token') == null;
 
@@ -50,17 +50,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public ngOnInit() : void {
-    let cookie = Cookie.get('auth-token');
-    if (cookie != null) {
-      this.router.navigate(['Movies']);
-    } else {
-      this.router.navigate(['Login']);
-    }
-  }
-
   logout() {
     Cookie.delete('auth-token');
-    this.router.navigate(['Login']);
+    this.router.navigate(['login']);
   }
 }
