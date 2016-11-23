@@ -10,6 +10,7 @@ import {LoginComponent} from "./login/login.component";
 import {LoginModule} from "./login/login.module";
 import {MoviesComponent} from "./movies/movies.component";
 import {MoviesModule} from "./movies/movies.module";
+import {MovieShowRatingComponent} from "./movies/rating/movie-show-rating.component";
 
 @NgModule({
     imports: [
@@ -22,7 +23,7 @@ import {MoviesModule} from "./movies/movies.module";
         RouterModule.forRoot([
             { path: 'login', component: LoginComponent},
             { path: 'movies', component: MoviesComponent},
-            /*{ path: 'movies/:id', component: MovieShowRatingComponent}*/
+            { path: 'movie/:id', component: MovieShowRatingComponent},
             { path: '', redirectTo: '/login', pathMatch: 'full' }
         ])
     ],

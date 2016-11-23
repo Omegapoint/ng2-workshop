@@ -72,8 +72,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
   }
 
-  public ngOnInit() : void {
-    console.log("hello");
+  ngOnInit() {
     let cookie = Cookie.get('auth-token');
     if (cookie != null) {
       this._router.navigate(['movies']);
