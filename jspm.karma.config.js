@@ -96,6 +96,8 @@ SystemJS.config({
         "github:*/*.json"
     ],
     map: {
+        "ng2-cookies": "npm:ng2-cookies@1.0.3",
+        "moment": "npm:moment@2.15.1",
         "es6-shim": "github:es-shims/es6-shim@0.35.1",
         "@angular/router": "npm:@angular/router@3.0.1",
         "json-typescript-mapper": "npm:json-typescript-mapper@1.0.5",
@@ -131,6 +133,7 @@ SystemJS.config({
         "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
         "timers": "npm:jspm-nodelibs-timers@0.2.0",
         "tty": "npm:jspm-nodelibs-tty@0.2.0",
+        "typescript-collections": "npm:typescript-collections@1.2.3",
         "url": "npm:jspm-nodelibs-url@0.2.0",
         "util": "npm:jspm-nodelibs-util@0.2.0",
         "vm": "npm:jspm-nodelibs-vm@0.2.0",

@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   template: `
   <div class="row">
     <div class="col-sm-6">
-      <h1>Loginformulär</h1>
+      <h1>Inloggning</h1>
       <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
       
         <div class="form-group">
