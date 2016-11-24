@@ -4,3 +4,4 @@ build/
 typings/
 npm-debug.log
 testenv/app.js
+.idea

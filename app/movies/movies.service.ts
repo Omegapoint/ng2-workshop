@@ -1,6 +1,5 @@
 import {API_URL} from '../conf';
-import {Injectable} from 'angular2/core';
-import {Http, Headers, Response, HTTP_PROVIDERS} from "angular2/http";
+
 import {Movie} from './movie';
 import {IRating} from './rating';
 import {AuthHttp} from '../util/AuthHttp';
@@ -8,13 +7,14 @@ import {METHOD} from '../util/method';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeAll'
 import 'rxjs/add/operator/toArray'
+import {Injectable} from "@angular/core";
 
 @Injectable()
 export class MoviesService {
-  constructor(private _http:Http, private _authHttp:AuthHttp) {}
+  constructor(private _authHttp:AuthHttp) {}
 
   private transformRating = (ratings) => {
-      return ratings.map(rating => <IRating>{id: rating.id, comment: rating.comment, rating: rating.rating});
+      return ratings.map(rating => <IRating>{id: rating.id, comment: rating.comment, rating: rating.rating, user: rating.user});
   };
 
   private sortResult = (movies) => {
@@ -24,7 +24,7 @@ export class MoviesService {
       };
       return movies.sort((e1, e2) => {
         let rate1 = accFn(e2.rating);
-        let rate2 = accFn(e1.rating)
+        let rate2 = accFn(e1.rating);
         let rate1_length = e2.rating.length;
         let rate2_length = e1.rating.length;
         rate1 = rate1_length > 0 ? rate1/rate1_length : rate1;

@@ -139,11 +139,23 @@ router.use(function(req, res, next) {
 });
 
 router.get('/movies', function(req, res) {
-  res.json(collection.find());
+  var movies = collection.find();
+  movies = _.forEach(movies, function (movie) {
+      movie.rating = _.map(movie.rating, function (rating) {
+        rating.canDelete = rating.user === req.decoded.user_id;
+        return rating;
+      });
+  });
+  res.json(movies);
 });
 
 router.get('/movies/:movie_id', function(req, res) {
-    res.json(collection.get(req.params.movie_id));
+    var movie = collection.get(req.params.movie_id);
+    movie.rating = _.map(movie.rating, function (rating) {
+      rating.canDelete = rating.user === req.decoded.user_id;
+      return rating;
+    });
+    res.json(movie);
 });
 
 router.route('/movies/:movie_id/rating')
@@ -154,7 +166,8 @@ router.route('/movies/:movie_id/rating')
     movie.rating.push({
       "id": id,
       "comment": req.body.comment,
-      "rating": parseInt(req.body.rating)
+      "rating": parseInt(req.body.rating),
+      "user": req.decoded.user_id
     });
     collection.update(movie);
     res.sendStatus(200);

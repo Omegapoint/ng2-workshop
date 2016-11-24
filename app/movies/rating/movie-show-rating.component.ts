@@ -1,34 +1,44 @@
-import {Component, OnInit} from 'angular2/core';
+import { Component, OnInit } from '@angular/core';
 import {Movie} from '../movie';
-import { Router } from 'angular2/router';
-import {RouteParams} from 'angular2/router';
 import {MoviesService} from '../movies.service';
 import { IRating } from '../rating';
-import template from './movie-show-rating.component.html!text';
+//noinspection TypeScriptCheckImport
+import template from './movie-show-rating.component.html';
+import {Router, ActivatedRoute, Params} from "@angular/router";
 
 @Component({
   selector: 'show-rating',
   template: template,
   providers: [MoviesService]
 })
-export class MovieShowRatingComponent {
+export class MovieShowRatingComponent implements OnInit {
   movie: Movie;
 
-  constructor(private _router: Router, private _routeParams:RouteParams, private _moviesService: MoviesService) {}
+  constructor(private _router: Router, private _route: ActivatedRoute, private _moviesService: MoviesService) {}
+
+  ngOnInit() {
+    this.fetchMovie();
+  }
 
   private fetchMovie() {
-
+    this._route.params.subscribe(
+        (params:Params) => {
+          let id = params['id'];
+          this._moviesService.getMovieById(id)
+              .subscribe(movie => this.movie = movie);
+        }
+    );
   }
 
   back() {
-    this._router.navigate(['Movies']);
+    this._router.navigate(['movies']);
   }
 
   formatUser(user:string) {
       let first:string = user.charAt(0);
       return first.toUpperCase() + user.substring(1);
   }
-  
+
   deleteRating(rating:IRating) {
     this._moviesService.deleteRating(this.movie.id, rating)
     .subscribe(

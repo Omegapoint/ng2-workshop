@@ -1,24 +1,22 @@
-import { Component, View, OnInit, EventEmitter } from 'angular2/core';
-import { Router } from 'angular2/router';
-import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
-import { ACCORDION_DIRECTIVES, Collapse, Rating } from 'ng2-bootstrap';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import { Movie } from '../movie';
 import { IRating } from '../rating';
 import { MoviesService } from '../movies.service';
-import template from './movie-rating.component.html!text';
-import stylesheet from '../movies.component.css!text';
+//noinspection TypeScriptCheckImport
+import template from './movie-rating.component.html';
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'movie-rating',
-  template: template,
-  styles: [stylesheet],
-  directives: [ACCORDION_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, Collapse, Rating],
-  inputs: ['movie']
+  template: template
 })
-
 export class MovieRatingComponent {
+  @Input()
   movie: Movie;
+  @Output()
   newRating: EventEmitter<any>;
+
   movieRating: IRating = {comment: '', rating: 1};
 
   private x:number = 5;
@@ -38,23 +36,27 @@ export class MovieRatingComponent {
   ];
 
   constructor(private _router: Router, private _moviesService: MoviesService) {
-
+    this.newRating = new EventEmitter();
   }
 
-  private hoveringOver(value:number):void {
+  hoveringOver(value:number):void {
     this.overStar = value;
     this.percent = 100 * (value / this.max);
   };
 
-  private resetStar() {
+  resetStar() {
     this.overStar = null;
   }
 
-  private addRating() {
-
+  addRating() {
+    let id = this.movie.id;
+    this._moviesService.addRating(id, this.movieRating)
+    .subscribe(
+      () => this.newRating.next(null)
+    );
   }
 
   showRatings() {
-    this._router.navigate(['MovieShowRating', { id: this.movie.id }]);
+    this._router.navigate(['movie', this.movie.id]);
   }
 }

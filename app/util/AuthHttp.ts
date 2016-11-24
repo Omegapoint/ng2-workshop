@@ -1,11 +1,11 @@
-import {API_URL} from '../conf';
-import {Injectable} from 'angular2/core';
-import {Http, Headers, Response} from "angular2/http";
-import {METHOD} from './method';
+
 import {Cookie} from 'ng2-cookies/ng2-cookies';
-import {Observable} from 'rxjs';
+
 
 import 'rxjs/add/operator/map';
+import {Injectable} from "@angular/core";
+import {Http, Headers} from "@angular/http";
+import {METHOD} from "./method";
 
 @Injectable()
 export class AuthHttp {
@@ -13,7 +13,7 @@ export class AuthHttp {
   constructor(private _http:Http) {}
 
   request(method: METHOD, url: string, body?: any) {
-    let token = Cookie.getCookie('auth-token');
+    let token = Cookie.get('auth-token');
     var headers = new Headers();
     headers.append('Authorization', 'Bearer ' + token);
     switch (method) {
@@ -40,7 +40,6 @@ export class AuthHttp {
   }
 
   private delete(url, headers) {
-    this._http.delete
     return this._http.delete(url, {
       headers: headers
     });

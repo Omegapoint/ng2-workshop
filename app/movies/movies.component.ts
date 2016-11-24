@@ -1,20 +1,15 @@
-import { Component, View, OnInit } from 'angular2/core';
-import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
-import { ACCORDION_DIRECTIVES, Collapse, Rating } from 'ng2-bootstrap';
+import { Component, OnInit } from '@angular/core';
 import { MoviesService } from './movies.service';
 import { Movie } from './movie';
-import { MovieRatingComponent } from './rating/movie-rating.component';
-import template from './movies.component.html!text';
-import stylesheet from './movies.component.css!text';
+//import { MovieRatingComponent } from './rating/movie-rating.component';
+//noinspection TypeScriptCheckImport
+import template from './movies.component.html';
+import './movies.component.scss!';
 
 @Component({
   selector: 'movies',
   template: template,
-  styles: [stylesheet],
-  directives: [MovieRatingComponent, ACCORDION_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, Collapse, Rating],
-  providers: [MoviesService]
 })
-
 export class MoviesComponent implements OnInit {
   public status:Object = {
     isFirstOpen: true,
@@ -33,6 +28,7 @@ export class MoviesComponent implements OnInit {
   }
 
   getMovies() {
-
+    this._moviesService.getMovies()
+      .subscribe(movies => this.movies = movies);
   }
 }
