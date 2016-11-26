@@ -10,17 +10,23 @@ vid lyckad inlogging returnerar ett giltigt token, detta sparar vi i en cookie, 
 ### Deluppgifter
 <ol>
   <li>
-  Starta applikationen med npm start, det följer med routing som visar ett inloggningsformulär om man inte är inloggad. Men det finns ingen funktionalitet bakom submitknappen.
+  Skriv en sass fil som du döper till login.component.scss, importera sedan filen i login.component.ts, använd filändelsen .scss!
+  Exempel: import './mystyle.scss!'; <br>
+  I sass filen, lägg in styling för input-fälten så att det syns om fältet validerar eller inte.
+  .ng-valid kan användas när valideringen är ok, och .ng-touched.ng-invalid kan användas när valideringen failar.
+  Vanlig css fungerar utmärkt med sass, men prova gärna att använda någon sass funktionalitet t.e.x $myColor: #eee;
   </li>
   <li>
   I inloggningsformuläret finns redan klientvalidering implementerat för användarnamn och lösenord, men vi behöver en validering efter
   att uppgifterna postats till servern. Lägg därför till en div med klasserna altert alert-danger under submitknappen, denna ska bara visas om
   inloggningen misslyckats. Det finns en flagga authFailure som kan användas för detta.
+  Det går att använda input propety hidden för att styra om något ska visas eller inte, eller så använder man *ngIf
   </li>
   <li>
   I klassen LoginComponent finns en metod onSubmit, denna anropas vid submit av formuläret. Uppgiften blir att implementera denna metod.
-  Skapa ett post-anrop med http servicen och skicka inloggningsuppgifter till endpointen /authenticate. Inloggningsuppgifterna kan hämtas ut från user-objektet. Om inloggningen går bra ska cookien auth-token
-  uppdateras med giltig JWT och vi navigerar till routen Movies.
+  Skapa ett post-anrop med http servicen och skicka inloggningsuppgifter till endpointen /authenticate.
+  Om inloggningen går bra ska cookien auth-token
+  uppdateras med giltig JWT och vi navigerar till routen lectures.
   Om inloggningen misslyckas ska vi sätta authFailure till true och visa felmeddelandet. Så användaren kan försöka logga in på nytt.
   </li>
 </ol>

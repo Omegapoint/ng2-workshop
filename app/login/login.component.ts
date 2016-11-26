@@ -28,23 +28,11 @@ import {Router} from "@angular/router";
           </div>
         </div>
         <button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Submit</button>
-        <div [hidden]="!authFailure" class="alert alert-danger" style="margin-top:10px">
-          Invalid username or password, please try again.
-        </div>
         
       </form>
     </div>
   </div>
-  `,
-  styles: [`
-    input.ng-valid[required] {
-      border-left: 5px solid #42A948; /* green */
-    }
-
-    input.ng-touched.ng-invalid {
-      border-left: 5px solid #a94442; /* red */
-    }
-  `]
+  `
 })
 
 export class LoginComponent implements OnInit {
@@ -58,17 +46,9 @@ export class LoginComponent implements OnInit {
     var body = "user_id=" + this.user.name + "&password=" + this.user.password;
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    this._http.post(API_URL + '/authenticate', body, {
-      headers: headers
-    })
-    .map(response => response.json())
-    .subscribe(
-      data => {
-        Cookie.set('auth-token', data.token);
-        this._router.navigate(['lectures']);
-      },
-      err => this.authFailure = true
-    );
+    let endpoint = API_URL + '/authenticate';
+    //TODO: authenticate user
+
     this.submitted = true;
   }
 
