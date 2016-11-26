@@ -1,23 +1,24 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import { Movie } from '../movie';
 import { IRating } from '../rating';
-import { MoviesService } from '../movies.service';
+
 //noinspection TypeScriptCheckImport
-import template from './movie-rating.component.html';
+import template from './lecture-rating.component.html';
 import {Router} from "@angular/router";
+import {LecturesService} from "../lectures.service";
+import {Lecture} from "../lecture";
 
 
 @Component({
-  selector: 'movie-rating',
+  selector: 'lecture-rating',
   template: template
 })
-export class MovieRatingComponent {
+export class LectureRatingComponent {
   @Input()
-  movie: Movie;
+  lecture: Lecture;
   @Output()
   newRating: EventEmitter<any>;
 
-  movieRating: IRating = {comment: '', rating: 1};
+  lectureRating: IRating = {comment: '', rating: 1};
 
   private x:number = 5;
   private y:number = 2;
@@ -35,7 +36,7 @@ export class MovieRatingComponent {
     {stateOff: 'glyphicon-off'}
   ];
 
-  constructor(private _router: Router, private _moviesService: MoviesService) {
+  constructor(private _router: Router, private lecturesService: LecturesService) {
     this.newRating = new EventEmitter();
   }
 
@@ -49,14 +50,14 @@ export class MovieRatingComponent {
   }
 
   addRating() {
-    let id = this.movie.id;
-    this._moviesService.addRating(id, this.movieRating)
+    let id = this.lecture.id;
+    this.lecturesService.addRating(id, this.lectureRating)
     .subscribe(
       () => this.newRating.next(null)
     );
   }
 
   showRatings() {
-    this._router.navigate(['movie', this.movie.id]);
+    this._router.navigate(['lecture', this.lecture.id]);
   }
 }

@@ -1,6 +1,5 @@
 import {API_URL} from '../conf';
 
-import {Movie} from './movie';
 import {IRating} from './rating';
 import {AuthHttp} from '../util/AuthHttp';
 import {METHOD} from '../util/method';
@@ -8,21 +7,22 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeAll'
 import 'rxjs/add/operator/toArray'
 import {Injectable} from "@angular/core";
+import {Lecture} from "./lecture";
 
 @Injectable()
-export class MoviesService {
+export class LecturesService {
   constructor(private _authHttp:AuthHttp) {}
 
   private transformRating = (ratings) => {
       return ratings.map(rating => <IRating>{id: rating.id, comment: rating.comment, rating: rating.rating, user: rating.user});
   };
 
-  private sortResult = (movies) => {
+  private sortResult = (lectures) => {
       let accFn = (rating) => {
           let rate = rating.reduce( (prev, cur) => { return {rating: prev.rating + cur.rating} }, {rating: 0});
           return rate.rating;
       };
-      return movies.sort((e1, e2) => {
+      return lectures.sort((e1, e2) => {
         let rate1 = accFn(e2.rating);
         let rate2 = accFn(e1.rating);
         let rate1_length = e2.rating.length;
@@ -33,37 +33,37 @@ export class MoviesService {
       });
   };
 
-  getRatingForMovie(movie: Movie) {
+  getRatingForLecture(lecture: Lecture) {
     let accFn = (rating) => {
         let rate = rating.reduce( (prev, cur) => { return {rating: prev.rating + cur.rating} }, {rating: 0});
         return rate.rating;
     };
-    let rate1 = accFn(movie.rating);
-    return movie.rating.length > 0 ? rate1/movie.rating.length : rate1;
+    let rate1 = accFn(lecture.rating);
+    return lecture.rating.length > 0 ? rate1/lecture.rating.length : rate1;
   }
 
-  getMovies() {
-    let result = this._authHttp.request(METHOD.GET, API_URL + '/movies');
+  getLectures() {
+    let result = this._authHttp.request(METHOD.GET, API_URL + '/lectures');
     return result
       .map(res => res.json())
       .mergeAll()
-      .map(movie => <Movie>{id: movie.id, name: movie.name, description: movie.description, collapsed: true,
-         rating: this.transformRating(movie.rating)})
+      .map(lecture => <Lecture>{id: lecture.id, name: lecture.name, description: lecture.description, collapsed: true,
+         rating: this.transformRating(lecture.rating)})
       .toArray()
-      .map(movies => this.sortResult(movies));
+      .map(lectures => this.sortResult(lectures));
   }
 
-  getMovieById(id: number) {
-    let result = this._authHttp.request(METHOD.GET, `${API_URL}/movies/${id}`);
+  getLectureById(id: number) {
+    let result = this._authHttp.request(METHOD.GET, `${API_URL}/lectures/${id}`);
     return result.map(res => res.json());
   }
 
   addRating(id: number, rating: IRating) {
     var body = "comment=" + rating.comment + "&rating=" + rating.rating;
-    return this._authHttp.request(METHOD.PUT, API_URL + '/movies/' + id + '/rating', body);
+    return this._authHttp.request(METHOD.PUT, API_URL + '/lectures/' + id + '/rating', body);
   }
 
   deleteRating(id: number, rating: IRating) {
-    return this._authHttp.request(METHOD.DELETE, `${API_URL}/movies/${id}/rating/${rating.id}`);
+    return this._authHttp.request(METHOD.DELETE, `${API_URL}/lectures/${id}/rating/${rating.id}`);
   }
 }

@@ -1,7 +1,7 @@
-<div *ngIf="movie">
-  <h4>Kommentarer för film {{movie.name}}</h4>
+<div *ngIf="lecture">
+  <h4>Kommentarer för föreläsning {{lecture.name}}</h4>
   <div class="list-group">
-    <div class="list-group-item" *ngFor="let rating of movie.rating">
+    <div class="list-group-item" *ngFor="let rating of lecture.rating">
       <div *ngIf="rating.canDelete" class="row" style="margin-bottom:10px">
         <div class="col-sm-12">
             <a class="pull-right" (click)="deleteRating(rating)" style="cursor:pointer">

@@ -1,13 +1,13 @@
-<button (click)="movie.collapsed = !movie.collapsed" class="btn btn-primary">Betygsätt filmen</button>
+<button (click)="lecture.collapsed = !lecture.collapsed" class="btn btn-primary">Betygsätt</button>
 <button (click)="showRatings()" class="btn btn-primary">Visa kommentarer</button>
-<div [collapse]="movie.collapsed" class="panel panel-default row-margin">
+<div [collapse]="lecture.collapsed" class="panel panel-default row-margin">
   <div class="panel-body">
     <label>Kommentar</label>
-    <textarea [(ngModel)]="movieRating.comment" class="form-control" cols="2" rows="3">
+    <textarea [(ngModel)]="lectureRating.comment" class="form-control" cols="2" rows="3">
     </textarea>
     <br>
     <label>Rating:&nbsp;</label>
-    <rating [(ngModel)]="movieRating.rating" [max]="max" [readonly]="isReadonly"
+    <rating [(ngModel)]="lectureRating.rating" [max]="max" [readonly]="isReadonly"
             (onHover)="hoveringOver($event)" (onLeave)="resetStar($event)"
             [titles]="['one','two','three']">
     </rating>
@@ -18,6 +18,6 @@
   </div>
   <div class="panel-footer">
       <button class="btn btn-primary" (click)="addRating()">OK</button>
-      <button class="btn btn-default" (click)="movie.collapsed = !movie.collapsed">Cancel</button>
+      <button class="btn btn-default" (click)="lecture.collapsed = !lecture.collapsed">Cancel</button>
   </div>
 </div>

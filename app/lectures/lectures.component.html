@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Föreläsningar</h3>
+    <accordion [closeOthers]="true">
+      <accordion-group *ngFor="let lecture of lectures">
+        <div accordion-heading>
+          {{lecture.name}}
+          <span class="pull-right">{{getRating(lecture)}}</span>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            {{lecture.description}}
+          </div>
+        </div>
+        <div class="row row-margin">
+          <div class="col-sm-4">
+            <lecture-rating [lecture]="lecture" (newRating)="getLectures()"></lecture-rating>
+          </div>
+        </div>
+      </accordion-group>
+    </accordion>
+  </div>
+</div>

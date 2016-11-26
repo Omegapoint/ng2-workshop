@@ -1,6 +1,6 @@
 import {IRating} from './rating';
 
-export interface Movie {
+export interface Lecture {
   id: number,
   name: string,
   description: string,
