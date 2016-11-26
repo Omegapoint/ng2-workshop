@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
     .subscribe(
       data => {
         Cookie.set('auth-token', data.token);
-        this._router.navigate(['movies']);
+        this._router.navigate(['lectures']);
       },
       err => this.authFailure = true
     );
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     let cookie = Cookie.get('auth-token');
     if (cookie != null) {
-      this._router.navigate(['movies']);
+      this._router.navigate(['lectures']);
     } else {
       this._router.navigate(['login']);
     }
