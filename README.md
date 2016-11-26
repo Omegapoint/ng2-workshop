@@ -3,7 +3,20 @@ This is the repo for the Angular 2 workshop @omegapoint.
 In order to install and run the application you need Node and NPM installed.
 <br>
 The project uses jspm and systemJS, jspm is a package/build manager and 
-systemJS is a module loader for ES6/TypeScript. 
+systemJS is a module loader for ES6/TypeScript.
+## Prerequisites:
+<ul>
+  <li>
+  Node: >= 4.x
+  </li>
+  <li>
+  Npm: >= 2.x
+  </li>
+  <li>
+    Browser with decent devtools, chrome is recommended. 
+    (this setup has been tested with chrome and safari)
+  </li>
+</ul>
 ## Instruction for setup:
 Run the following command:
 <pre>
