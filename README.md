@@ -41,5 +41,5 @@ dependencies to systemJS, ES6 or TypeScript.
 <br>
 If you install the npm package http-server globally you can start up the application in the build directory by running:
 <pre>
-http-server -p <portnumber> -o
+http-server -p {portnumber} -o
 </pre> 
