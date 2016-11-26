@@ -50,11 +50,7 @@ export class LectureRatingComponent {
   }
 
   addRating() {
-    let id = this.lecture.id;
-    this.lecturesService.addRating(id, this.lectureRating)
-    .subscribe(
-      () => this.newRating.next(null)
-    );
+    //TODO: implement this
   }
 
   showRatings() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IRating } from '../rating';
 //noinspection TypeScriptCheckImport
 import template from './lecture-show-rating.component.html';
@@ -11,23 +11,13 @@ import {Lecture} from "../lecture";
   template: template,
   providers: [LecturesService]
 })
-export class LectureShowRatingComponent implements OnInit {
+export class LectureShowRatingComponent {
   lecture: Lecture;
 
   constructor(private _router: Router, private _route: ActivatedRoute, private lecturesService: LecturesService) {}
 
-  ngOnInit() {
-    this.fetchLecture();
-  }
-
   private fetchLecture() {
-    this._route.params.subscribe(
-        (params:Params) => {
-          let id = params['id'];
-          this.lecturesService.getLectureById(id)
-              .subscribe(lecture => this.lecture = lecture);
-        }
-    );
+    //TODO: extract the id for the lecture and fetch it using lecturesService
   }
 
   back() {

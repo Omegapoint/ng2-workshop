@@ -27,7 +27,6 @@ export class LecturesComponent implements OnInit {
   }
 
   getLectures() {
-    this.lecturesService.getLectures()
-      .subscribe(lectures => this.lectures = lectures);
+    //TODO get the lectures from out backend and populate the lectures list
   }
 }

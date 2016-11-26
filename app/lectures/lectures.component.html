@@ -2,19 +2,24 @@
   <div class="col-sm-12">
     <h3>Föreläsningar</h3>
     <accordion [closeOthers]="true">
-      <accordion-group *ngFor="let lecture of lectures">
+      <accordion-group>
         <div accordion-heading>
-          {{lecture.name}}
-          <span class="pull-right">{{getRating(lecture)}}</span>
+          <!-- TODO: show the lecture name -->
+          <span class="pull-right"><!-- TODO get the rating --></span>
         </div>
         <div class="row">
           <div class="col-sm-12">
-            {{lecture.description}}
+            <!-- TODO: show the description -->
           </div>
         </div>
         <div class="row row-margin">
           <div class="col-sm-4">
-            <lecture-rating [lecture]="lecture" (newRating)="getLectures()"></lecture-rating>
+
+            <!--
+            TODO: add the lecture-rating child component, send the lecture object as input, and
+                  call getLectures when a newRating event is sent out from the component
+            <lecture-rating></lecture-rating>
+            -->
           </div>
         </div>
       </accordion-group>

@@ -27,6 +27,7 @@ vid lyckad inlogging returnerar ett giltigt token, detta sparar vi i en cookie, 
   Skapa ett post-anrop med http servicen och skicka inloggningsuppgifter till endpointen /authenticate.
   Om inloggningen går bra ska cookien auth-token
   uppdateras med giltig JWT och vi navigerar till routen lectures.
+  I svaret från tjänsten kan token hämtas från attributet token.
   Om inloggningen misslyckas ska vi sätta authFailure till true och visa felmeddelandet. Så användaren kan försöka logga in på nytt.
   </li>
 </ol>
@@ -65,37 +66,33 @@ expect('olle').toBe('olle');
   </pre>
   </li>
   <li>
-  Verifiera lokalt att testet är ok genom att köra <pre>npm run test</pre>
+  Verifiera lokalt att testet är ok genom att köra <pre>npm test</pre>
   </li>
   <li>
   Installera http-server genom: <pre>npm install -g http-server</pre>
-  kör npm run build och kopiera sedan build/app.js till testenv katalogen
-  </li>
-  <li style="margin-top:5px">
-  Gå till testenv katalogen och kör:
-  <pre>http-server -o</pre>
-  Nu öppnas applikationen utan några beroenden till systemjs eller typescript.
+  kör:
+   <pre>npm run build</pre>
+    Gå sedan till build katalogen starta en webbserver med http-server, 
+    nu kan du öppna applikation utan beroenden till typescript eller systemJS.
   </li>
 </ol>
 
 ## Steg 3 - Implementera lista
-När vi loggat in routas vi till komponenten movies, den ska innehålla en lista med filmer som ska presenteras i en accordion.
-Det finns en service som är inkluderad i movies komponenten som hämtar filmer och ratings, den ska vi anropa i movies komponenten.
+När vi loggat in routas vi till LecturesComponent, den ska innehålla en lista med föredrag som ska presenteras i en accordion.
+Det finns en service som är inkluderad som hämtar filmer och ratings, den ska vi anropa i lectures komponenten.
 
 ### Deluppgifter
 <ol>
   <li>
-    I movies.component.ts finns en metod getMovies.
-    Implementera denna metod genom att använda moviesService.getMovies.
+    I lectures.component.ts finns en metod getLectures.
+    Implementera denna metod genom att använda lecturesService.getLectures.
     Skapa en lista i komponenten som vi sen refererar till i vyn.
   </li>
   <li>
-    I movies.component.html, lägg till ngFor direktivet så att vi kan visa listan. ngFor är "repeatern" för Angular 2.0.
+    I lectures.component.html, lägg till ngFor direktivet så att vi kan visa listan. ngFor är "repeatern" för Angular 2.0.
     <br><br>
     Exempel:
-     <pre> *ngFor="#box of boxes" </pre>
-    Notera att vi kommer använda den gamla syntaxen för ngFor där vi använder en referensvariabel med #box. I Angular 2.0.0-beta.17 och framåt
-    använder man så kallade template input variables med let syntax: let box of boxes. Eftersom applikationen är konfiguerad med 2.0.0-beta.8 använder vi referensvariabler med # istället.
+     <pre> *ngFor="let box of boxes" </pre>
   </li>
   <li>
   Använd sträng interpolation för att visa data från listan.
@@ -109,31 +106,40 @@ Nu ska vi göra klart movie-rating.component, som blir en barn-komponent till mo
 ### Deluppgifter
 <ol>
   <li>
-    I movies.component.html, skicka med movie objektet till movie-rating, det kan göras med [movie]="movie"
+    I lectures.component.html, skicka med lecture objektet till lecture-rating
   </li>
   <li>
-    I movie-rating.component, implementera addRating. När en ny rating lagts in behöver vi skapa ett event för detta, det kan vi göra med eventEmitter. Vi behöver alltså skapa en ny eventemitter i konstruktorn och när vi lagt in en ny rating via moviesService så notifierar vi movie-komponenten.
+    I lecture-rating.component, implementera addRating. När en ny rating lagts in behöver vi skapa ett event för detta,
+    det kan vi göra med en EventEmitter.
+    I komponenten finns redan en EventEmitter som är dekorerad som en output property 
   </li>
   <li>
     Skapa ett nytt event när en rating skapats med:
     <pre> this.newRating.next(null) </pre>
   </li>
   <li>
-    Slutligen koppla ihop eventet som kommer från movie-rating till movie.component med:
-    <pre> (newRating)="getMovies()" </pre>
+    Slutligen koppla ihop eventet som kommer från lecture-rating med metoden som hämtar alla lectures i lectures.component,
+    så att listan uppdateras.
   </li>
 </ol>
 
 ### Steg 5 - Visa rating
-I denna sista del ska vi kolla på hur vi kan initiera data genom att implementera OnInit interfacet.
+I denna del ska vi kolla på hur vi kan initiera data genom att implementera OnInit interfacet.
 ### Deluppgifter
-Öppna movie-show-rating.component.ts och gör följande:
+Öppna lecture-show-rating.component.ts och gör följande:
 <ol>
   <li>
-    Implementera OnInit i MovieShowRatingComponent, metoden som ska implementeras heter ngOnInit. ngOnInit ska i sin tur anropa fetchMovies och den metoden måste också implementeras.
+    Implementera OnInit i LectureShowRatingComponent, metoden som ska implementeras heter ngOnInit. ngOnInit ska i sin tur anropa fetchMovies och den metoden måste också implementeras.
   </li>
   <li>
-    fetchMovies måste få ett id som vi ska använda för att hämta en specifik film, vi kan extrahera id:t med följande metod:
-    <pre> let id = +this._routeParams.get('id'); </pre>
+    fetchMovies måste få ett id som vi ska använda för att hämta en specifik föreläsning, vi kan extrahera id:t med
+    ActivatedRoute. I ActivatedRoute finns en property params som är en observable av Params. Params innehåller sedan routens parametrar.
+    Params kan användas som ett vanligt JavaScript-objekt.
   </li>
 </ol>
+
+### Steg 6 - immutables
+I denna sista del ska vi kolla på hur man kan ändra angulars change detection strategi och använda immuterbara datastrukturer i en komponent.
+Om en komponent endast har immuterbart data som input så kan komponenten endast påverka sitt egna data,
+och därmed inte skapa sidoeffekter för andra komponenter.
+Detta gör också att angular inte behöver utföra change detection på alla komponenter i trädet, utan endast på de vars data har förändrats.
