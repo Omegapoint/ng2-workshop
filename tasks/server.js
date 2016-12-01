@@ -1,24 +1,34 @@
 'use strict';
-const httpServer = require('http-server');
+
+var express    = require('express');        // call express
+var app        = express();                 // define our app using express
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var path = require('path');
 const open = require('open');
 
-var cache = 3600;
-if (process.env.NODE_ENV === 'production') {
-    console.log('running in production mode(with caching)-make sure you have "Disable cache (while DevTools is open)" checked in the browser to see the changes while developing')
-} else {
-    cache = -1
-}
-const server = httpServer.createServer({
-    root: '.',
-    cache: cache,
-    robots: true,
-    headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true'
-    }
+// configure app to use bodyParser()
+// this will let us get the data from a POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// use morgan to log requests to the console
+app.use(morgan('dev'));
+
+app.use(function(req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    return next();
+});
+app.use(express.static('.'));
+app.use(function(req, res) {
+    // Use res.sendfile, as it streams instead of reading the file into memory.
+    res.sendFile(path.join(__dirname, '../', 'index.html'));
+
 });
 
-require('chokidar-socket-emitter')({app: server.server});
+var chokidarEvEmitter = require('chokidar-socket-emitter');
+chokidarEvEmitter({port: 9090, path: '.'});
 
-server.listen(9089);
+app.listen(9089);
 open('http://localhost:9089', 'google chrome');
