@@ -2,7 +2,7 @@ var Builder = require('jspm').Builder;
 var builder = new Builder();
 
 console.log("Starting application build...");
-builder.buildStatic("app", "build/build.js", { rollup: true })
+builder.buildStatic("app", "build/build.js", { rollup: false })
     .then(function() {
         console.log('Build complete');
     })

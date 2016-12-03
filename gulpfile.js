@@ -16,13 +16,13 @@ gulp.task('add-reflect', function () {
 });
 
 gulp.task('build-fonts', function () {
-    return gulp.src('app/styles/fonts/*.*')
-        .pipe(gulp.dest('build/app/styles/fonts'));
+    return gulp.src('app/assets/fonts/*.*')
+        .pipe(gulp.dest('build/app/assets/fonts'));
 });
 
 gulp.task('build-images', function () {
-    return gulp.src('app/styles/img/*.*')
-        .pipe(gulp.dest('build/app/styles/img'));
+    return gulp.src('app/assets/images/*.*')
+        .pipe(gulp.dest('build/app/assets/images'));
 });
 
 gulp.task('build-assets', ['add-reflect', 'build-index', 'build-fonts', 'build-images'], function() {
