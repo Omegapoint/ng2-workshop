@@ -14,7 +14,8 @@ vid lyckad inlogging returnerar ett giltigt token, detta sparar vi i en cookie, 
   Exempel: import './mystyle.scss!'; <br>
   I sass filen, lägg in styling för input-fälten så att det syns om fältet validerar eller inte.
   .ng-valid kan användas när valideringen är ok, och .ng-touched.ng-invalid kan användas när valideringen failar.
-  Vanlig css fungerar utmärkt med sass, men prova gärna att använda någon sass funktionalitet t.e.x $myColor: #eee;
+  Vanlig css fungerar utmärkt med sass, men prova gärna att använda någon sass funktionalitet t.e.x $myColor: #eee; <br>
+  En lämplig stilregel för att indikera att ett fält validerar eller ej skulle kunna vara border-left.
   </li>
   <li>
   I inloggningsformuläret finns redan klientvalidering implementerat för användarnamn och lösenord, men vi behöver en validering efter
