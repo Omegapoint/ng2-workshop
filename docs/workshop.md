@@ -1,7 +1,7 @@
 # Workshop Angular 2.0
 Detta dokument beskriver labbdelen av Angular 2.0 workshop.
 Vi kommer utgå från en applikation som saknar en del implementation, och vi kommer fylla i luckorna.
-Applikationen används för att betygsätta filmer, med en kommentarstext och ett betyg 1-10.
+Applikationen är en enkel rating-app för opkoko föreläsningar.
 ## Steg 1 - inloggning
 Applikationen kommunicerar mot en rest-tjänst som kräver autentisiering, JSON web token. Första steget är alltså
 att göra klart ett inloggningsformulär.
@@ -101,7 +101,7 @@ Det finns en service som är inkluderad som hämtar filmer och ratings, den ska 
 </ol>
 
 ### Steg 4 - Lägg till en ny rating
-Nu ska vi göra klart movie-rating.component, som blir en barn-komponent till movie komponenten.
+Nu ska vi göra klart lecture-rating.component, som blir en barn-komponent till lectures.component
 
 ### Deluppgifter
 <ol>

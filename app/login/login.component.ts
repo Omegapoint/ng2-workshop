@@ -17,15 +17,9 @@ import {Router} from "@angular/router";
           <label for="name">Namn</label>
           <input id="name" name="first" type="text" class="form-control" required
             [(ngModel)]="user.name" ngControl="name" #name="ngModel">
-          <div [hidden]="name.valid || name.pristine && !name.touched" class="alert alert-danger">
-            Name is required
-          </div>
           <label for="password">Lösenord</label>
           <input id="password" name="second" type="password" class="form-control" required
             [(ngModel)]="user.password" ngControl="password" #password="ngModel">
-          <div [hidden]="password.valid || password.pristine && !password.touched" class="alert alert-danger">
-            Password is required
-          </div>
         </div>
         <button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Submit</button>
         
