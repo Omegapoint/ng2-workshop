@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import template from './lectures.component.html';
 import './lectures.component.scss!';
 import {LecturesService} from "./lectures.service";
-import {Lecture} from "./lecture";
+import {LecturesStore, Lecture} from "./lectures.store";
 
 @Component({
   selector: 'lectures',
@@ -14,9 +14,8 @@ export class LecturesComponent implements OnInit {
     isFirstOpen: true,
     isFirstDisabled: false
   };
-  lectures: Lecture[] = [];
 
-  constructor(private lecturesService: LecturesService) { }
+  constructor(private lecturesService: LecturesService, private store: LecturesStore) { }
 
   ngOnInit() {
     this.getLectures();
@@ -27,7 +26,21 @@ export class LecturesComponent implements OnInit {
   }
 
   getLectures() {
+    this.store.lectures = [];
     this.lecturesService.getLectures()
-      .subscribe(lectures => this.lectures = lectures);
+      .subscribe(lectures => {
+        lectures.forEach(lecture => {
+          let addedLecture:Lecture = this.store.addLecture(lecture.id, lecture.name, lecture.description);
+          lecture.rating.forEach(rating => {
+            this.store.addRating(addedLecture, {
+              id: rating.id,
+              comment: rating.comment,
+              rating: rating.rating,
+              user: rating.user
+            });
+          });
+        });
+        this.lecturesService.sortLectures(this.store.lectures);
+      });
   }
 }

@@ -7,12 +7,13 @@ import {CommonModule} from "@angular/common";
 import {AuthHttp} from "../util/AuthHttp";
 import {LectureShowRatingComponent} from "./rating/lecture-show-rating.component";
 import {LectureRatingComponent} from "./rating/lecture-rating.component";
+import {LecturesStore} from "./lectures.store";
 
 @NgModule({
     imports: [CommonModule, HttpModule, AccordionModule, RatingModule, CollapseModule],
     declarations: [LecturesComponent, LectureRatingComponent, LectureShowRatingComponent],
     exports: [LecturesComponent, LectureRatingComponent, LectureShowRatingComponent],
-    providers: [LecturesService, AuthHttp]
+    providers: [LecturesService, LecturesStore, AuthHttp]
 })
 export class LecturesModule {
 

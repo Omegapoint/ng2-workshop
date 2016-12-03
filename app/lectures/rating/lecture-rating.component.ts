@@ -1,11 +1,12 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import { IRating } from '../rating';
+
 
 //noinspection TypeScriptCheckImport
 import template from './lecture-rating.component.html';
 import {Router} from "@angular/router";
 import {LecturesService} from "../lectures.service";
-import {Lecture} from "../lecture";
+
+import {IRating, Lecture, LecturesStore} from "../lectures.store";
 
 
 @Component({
@@ -15,10 +16,8 @@ import {Lecture} from "../lecture";
 export class LectureRatingComponent {
   @Input()
   lecture: Lecture;
-  @Output()
-  newRating: EventEmitter<any>;
 
-  lectureRating: IRating = {comment: '', rating: 1};
+  lectureRating: IRating = {id: -1, comment: '', rating: 1, user:''};
 
   private x:number = 5;
   private y:number = 2;
@@ -36,8 +35,8 @@ export class LectureRatingComponent {
     {stateOff: 'glyphicon-off'}
   ];
 
-  constructor(private _router: Router, private lecturesService: LecturesService) {
-    this.newRating = new EventEmitter();
+  constructor(private _router: Router, private lecturesService: LecturesService, private store: LecturesStore) {
+
   }
 
   hoveringOver(value:number):void {
@@ -53,7 +52,12 @@ export class LectureRatingComponent {
     let id = this.lecture.id;
     this.lecturesService.addRating(id, this.lectureRating)
     .subscribe(
-      () => this.newRating.next(null)
+      () => {
+        this.store.addRating(this.lecture, this.lectureRating);
+        this.lecturesService.sortLectures(this.store.lectures);
+        this.lectureRating.comment = '';
+        this.lectureRating.rating = 1;
+      }
     );
   }
 

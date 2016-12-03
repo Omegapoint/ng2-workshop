@@ -1,13 +1,12 @@
 import {API_URL} from '../conf';
 
-import {IRating} from './rating';
 import {AuthHttp} from '../util/AuthHttp';
 import {METHOD} from '../util/method';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeAll'
 import 'rxjs/add/operator/toArray'
 import {Injectable} from "@angular/core";
-import {Lecture} from "./lecture";
+import {LecturesStore, IRating, Lecture} from "./lectures.store";
 
 @Injectable()
 export class LecturesService {
@@ -45,12 +44,16 @@ export class LecturesService {
   getLectures() {
     let result = this._authHttp.request(METHOD.GET, API_URL + '/lectures');
     return result
-      .map(res => res.json())
-      .mergeAll()
-      .map(lecture => <Lecture>{id: lecture.id, name: lecture.name, description: lecture.description, collapsed: true,
-         rating: this.transformRating(lecture.rating)})
-      .toArray()
-      .map(lectures => this.sortResult(lectures));
+      .map(res => res.json());
+      //.mergeAll()
+      //.map(lecture => {
+          //<Lecture>{id: lecture.id, name: lecture.name, description: lecture.description, collapsed: true,
+          //    rating: this.transformRating(lecture.rating)}
+
+
+      //})
+      //.toArray()
+      //.map(lectures => this.sortResult(lectures));
   }
 
   getLectureById(id: number) {
@@ -65,5 +68,9 @@ export class LecturesService {
 
   deleteRating(id: number, rating: IRating) {
     return this._authHttp.request(METHOD.DELETE, `${API_URL}/lectures/${id}/rating/${rating.id}`);
+  }
+
+  sortLectures(lectures: Lecture[]) : Lecture[] {
+      return this.sortResult(lectures);
   }
 }

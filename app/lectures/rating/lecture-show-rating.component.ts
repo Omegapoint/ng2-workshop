@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { IRating } from '../rating';
+
 //noinspection TypeScriptCheckImport
 import template from './lecture-show-rating.component.html';
 import {Router, ActivatedRoute, Params} from "@angular/router";
 import {LecturesService} from "../lectures.service";
-import {Lecture} from "../lecture";
+import {Lecture, IRating} from "../lectures.store";
+
 
 @Component({
   selector: 'show-rating',
