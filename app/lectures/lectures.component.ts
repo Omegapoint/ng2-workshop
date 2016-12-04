@@ -40,11 +40,11 @@ export class LecturesComponent implements OnInit {
             });
           });
         });
-        this.lecturesService.sortLectures(this.store.lectures);
+        this.sort();
       });
   }
 
   sort() {
-    this.lecturesService.sortLectures(this.store.lectures);
+    //TODO: call sortLectures in lecturesService to sort the list
   }
 }
