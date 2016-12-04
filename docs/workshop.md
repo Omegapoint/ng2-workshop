@@ -141,6 +141,29 @@ I denna del ska vi kolla på hur vi kan initiera data genom att implementera OnI
 
 ### Steg 6 - immutables
 I denna sista del ska vi kolla på hur man kan ändra angulars change detection strategi och använda immuterbara datastrukturer i en komponent.
-Om en komponent endast har immuterbart data som input så kan komponenten endast påverka sitt egna data,
-och därmed inte skapa sidoeffekter för andra komponenter.
-Detta gör också att angular inte behöver utföra change detection på alla komponenter i trädet, utan endast på de vars data har förändrats.
+Om en komponent endast har immuterbart data som input så kan den inte skapa sidoeffekter för andra komponenter.
+Detta gör att angular inte behöver utföra change detection på alla komponenter i trädet, utan endast på de vars data har förändrats.
+Det finns en gren immutables_facit med en färdig implementation om ni fastnar.
+### Deluppgifter
+<ol>
+    <li>
+        Byt till grenen immutable, och installera biblioteket immutable.js <br>
+        Installera med jspm:
+        <pre>jspm install npm:immutable</pre>
+        Lägg till följande i jspm.config.js, under typescriptOptions, sektion typings:
+        <pre>"immutable": "dist/immutable.d.ts"</pre>
+    </li>
+    <li>
+        I lecture-rating.component.ts, lägg till följande i @Component
+        <pre>changeDetection: ChangeDetectionStrategy.OnPush</pre>
+    </li>
+    <li>
+        I denna gren finns en ny service, lectures.store.ts. <br>
+        Den är implementerad med muterbara objekt, uppgiften blir 
+        att istället använda immutable.js för att hantera listan med lectures.
+        Ett exempel på hur en sådan implementation kan se ut finns här:
+        <a href="http://houssein.me/redux/immutablejs/angular2/2016/07/04/angular2-with-immutablejs-and-redux.html">
+        angular2-with-immutablejs-and-redux
+        </a>
+    </li>
+</ol>
