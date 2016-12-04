@@ -12,10 +12,6 @@ import {LecturesStore, IRating, Lecture} from "./lectures.store";
 export class LecturesService {
   constructor(private _authHttp:AuthHttp) {}
 
-  private transformRating = (ratings) => {
-      return ratings.map(rating => <IRating>{id: rating.id, comment: rating.comment, rating: rating.rating, user: rating.user});
-  };
-
   private sortResult = (lectures) => {
       let accFn = (rating) => {
           let rate = rating.reduce( (prev, cur) => { return {rating: prev.rating + cur.rating} }, {rating: 0});
@@ -45,15 +41,6 @@ export class LecturesService {
     let result = this._authHttp.request(METHOD.GET, API_URL + '/lectures');
     return result
       .map(res => res.json());
-      //.mergeAll()
-      //.map(lecture => {
-          //<Lecture>{id: lecture.id, name: lecture.name, description: lecture.description, collapsed: true,
-          //    rating: this.transformRating(lecture.rating)}
-
-
-      //})
-      //.toArray()
-      //.map(lectures => this.sortResult(lectures));
   }
 
   getLectureById(id: number) {
@@ -70,7 +57,7 @@ export class LecturesService {
     return this._authHttp.request(METHOD.DELETE, `${API_URL}/lectures/${id}/rating/${rating.id}`);
   }
 
-  sortLectures(lectures: Lecture[]) : Lecture[] {
+  sortLectures(lectures) {
       return this.sortResult(lectures);
   }
 }

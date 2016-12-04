@@ -46,9 +46,4 @@ export class LecturesStore {
         this.lectures[index].rating.push(rating);
     }
 
-    removeRating(lecture: Lecture, rating: IRating) {
-        const index = this.lectures.indexOf(lecture);
-        const ratingIndex = this.lectures[index].rating.indexOf(rating);
-        this.lectures[index].rating.splice(ratingIndex, 1);
-    }
 }
