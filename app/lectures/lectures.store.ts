@@ -1,4 +1,6 @@
 import {Injectable} from "@angular/core";
+import Immutable from 'immutable';
+
 export class IRating {
     id?: number = -1;
     comment: string = '';
@@ -29,26 +31,36 @@ export class Lecture {
 
 @Injectable()
 export class LecturesStore {
-    lectures: Lecture[];
+    lectures;
 
     constructor() {
-        this.lectures = [];
+        this.lectures = Immutable.List<Lecture>();
+    }
+
+    reset() {
+        this.lectures = Immutable.List<Lecture>();
     }
 
     addLecture(id: number, name: string, description: string) : Lecture {
         let lecture = new Lecture(id, name, description);
-        this.lectures.push(lecture);
+        this.lectures = this.lectures.push(lecture);
         return lecture;
     }
 
     addRating(lecture: Lecture, rating: IRating) {
         const index = this.lectures.indexOf(lecture);
-        this.lectures[index].rating.push(rating);
-    }
+        this.lectures = (<any>this.lectures).update(index, (lecture) => {
+            let ratings: IRating[] = [];
+            lecture.rating.forEach(oldRating => ratings.push(oldRating));
+            ratings.push(rating);
 
-    removeRating(lecture: Lecture, rating: IRating) {
-        const index = this.lectures.indexOf(lecture);
-        const ratingIndex = this.lectures[index].rating.indexOf(rating);
-        this.lectures[index].rating.splice(ratingIndex, 1);
+            return {
+                id: lecture.id,
+                name: lecture.name,
+                description: lecture.description,
+                rating: ratings
+            };
+
+        });
     }
 }

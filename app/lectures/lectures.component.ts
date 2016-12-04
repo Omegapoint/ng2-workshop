@@ -26,7 +26,7 @@ export class LecturesComponent implements OnInit {
   }
 
   getLectures() {
-    this.store.lectures = [];
+    this.store.reset();
     this.lecturesService.getLectures()
       .subscribe(lectures => {
         lectures.forEach(lecture => {
@@ -40,11 +40,11 @@ export class LecturesComponent implements OnInit {
             });
           });
         });
-        this.lecturesService.sortLectures(this.store.lectures);
+        this.store.lectures = this.lecturesService.sortLectures(this.store.lectures);
       });
   }
 
   sort() {
-    this.lecturesService.sortLectures(this.store.lectures);
+    this.store.lectures = this.lecturesService.sortLectures(this.store.lectures);
   }
 }

@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
 
 
 //noinspection TypeScriptCheckImport
@@ -11,7 +11,8 @@ import {IRating, Lecture, LecturesStore} from "../lectures.store";
 
 @Component({
   selector: 'lecture-rating',
-  template: template
+  template: template,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LectureRatingComponent {
   @Input()
@@ -38,7 +39,7 @@ export class LectureRatingComponent {
   ];
 
   constructor(private _router: Router, private lecturesService: LecturesService, private store: LecturesStore) {
-    this.newRating = new EventEmitter<any>();
+    this.newRating = new EventEmitter();
   }
 
   hoveringOver(value:number):void {
@@ -57,6 +58,7 @@ export class LectureRatingComponent {
       () => {
         this.store.addRating(this.lecture, this.lectureRating);
         this.lectureRating = {id: -1, comment: '', rating: 1, user:''};
+        this.newRating.next(null);
       }
     );
   }

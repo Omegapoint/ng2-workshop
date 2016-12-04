@@ -6,7 +6,6 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
 import {LecturesService} from "../lectures.service";
 import {Lecture, IRating} from "../lectures.store";
 
-
 @Component({
   selector: 'show-rating',
   template: template,

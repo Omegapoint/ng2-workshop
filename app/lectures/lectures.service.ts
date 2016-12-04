@@ -70,7 +70,7 @@ export class LecturesService {
     return this._authHttp.request(METHOD.DELETE, `${API_URL}/lectures/${id}/rating/${rating.id}`);
   }
 
-  sortLectures(lectures: Lecture[]) : Lecture[] {
+  sortLectures(lectures) {
       return this.sortResult(lectures);
   }
 }

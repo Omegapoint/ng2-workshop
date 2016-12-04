@@ -55,7 +55,8 @@ SystemJS.config({
       "json-typescript-mapper": "index.d.ts",
       "typescript-collections": "dist/lib/index.d.ts",
       "moment": "moment.d.ts",
-      "ng2-cookies": "index.d.ts"
+      "ng2-cookies": "index.d.ts",
+      "immutable": "dist/immutable.d.ts"
     }
   },
   packages: {
@@ -102,6 +103,7 @@ SystemJS.config({
     "github:*/*.json"
   ],
   map: {
+    "immutable": "npm:immutable@3.8.1",
     "ng2-cookies": "npm:ng2-cookies@1.0.3",
     "moment": "npm:moment@2.15.1",
     "es6-shim": "github:es-shims/es6-shim@0.35.1",
@@ -132,7 +134,7 @@ SystemJS.config({
     "net": "npm:jspm-nodelibs-net@0.2.0",
     "os": "npm:jspm-nodelibs-os@0.2.0",
     "path": "npm:jspm-nodelibs-path@0.2.0",
-    "process": "github:jspm/nodelibs-process@0.2.0-alpha",
+    "process": "npm:jspm-nodelibs-process@0.2.0",
     "reflect-metadata": "npm:reflect-metadata@0.1.8",
     "rxjs": "npm:rxjs@5.0.0-beta.12",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",

@@ -14,7 +14,7 @@
         </div>
         <div class="row row-margin">
           <div class="col-sm-4">
-            <lecture-rating [lecture]="lecture"></lecture-rating>
+            <lecture-rating [lecture]="lecture" (newRating)="sort()"></lecture-rating>
           </div>
         </div>
       </accordion-group>
