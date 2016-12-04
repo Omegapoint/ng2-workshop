@@ -132,7 +132,7 @@ SystemJS.config({
     "net": "npm:jspm-nodelibs-net@0.2.0",
     "os": "npm:jspm-nodelibs-os@0.2.0",
     "path": "npm:jspm-nodelibs-path@0.2.0",
-    "process": "github:jspm/nodelibs-process@0.2.0-alpha",
+    "process": "npm:jspm-nodelibs-process@0.2.0",
     "reflect-metadata": "npm:reflect-metadata@0.1.8",
     "rxjs": "npm:rxjs@5.0.0-beta.12",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
