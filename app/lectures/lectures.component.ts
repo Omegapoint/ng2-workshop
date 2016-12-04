@@ -43,4 +43,8 @@ export class LecturesComponent implements OnInit {
         this.lecturesService.sortLectures(this.store.lectures);
       });
   }
+
+  sort() {
+    this.lecturesService.sortLectures(this.store.lectures);
+  }
 }

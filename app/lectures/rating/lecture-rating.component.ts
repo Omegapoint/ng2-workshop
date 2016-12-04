@@ -16,6 +16,8 @@ import {IRating, Lecture, LecturesStore} from "../lectures.store";
 export class LectureRatingComponent {
   @Input()
   lecture: Lecture;
+  @Output()
+  newRating: EventEmitter<any>;
 
   lectureRating: IRating = {id: -1, comment: '', rating: 1, user:''};
 
@@ -36,7 +38,7 @@ export class LectureRatingComponent {
   ];
 
   constructor(private _router: Router, private lecturesService: LecturesService, private store: LecturesStore) {
-
+    this.newRating = new EventEmitter<any>();
   }
 
   hoveringOver(value:number):void {
@@ -54,9 +56,7 @@ export class LectureRatingComponent {
     .subscribe(
       () => {
         this.store.addRating(this.lecture, this.lectureRating);
-        this.lecturesService.sortLectures(this.store.lectures);
-        this.lectureRating.comment = '';
-        this.lectureRating.rating = 1;
+        this.lectureRating = {id: -1, comment: '', rating: 1, user:''};
       }
     );
   }
