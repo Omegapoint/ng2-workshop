@@ -58,15 +58,11 @@ describe('LoginComponent', () => {
 
   it('token should be set in cookie', async(inject([MockBackend], (mockBackend) => {
 
-    TestBed.compileComponents().then(() => {
-      const fixture = TestBed.createComponent(LoginComponent);
-
-      // Access the dependency injected component instance
-      const app = fixture.componentInstance;
-
       //TODO: write a test which calls onSubmit and verifies the result
+      // use TestBed to create an instance of the LoginComponent, TestBed.compileComponents()
+
+
       expect(true).toBe(true);
-    });
   })));
 
 });

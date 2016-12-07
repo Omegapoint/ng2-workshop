@@ -130,10 +130,10 @@ I denna del ska vi kolla på hur vi kan initiera data genom att implementera OnI
 Öppna lecture-show-rating.component.ts och gör följande:
 <ol>
   <li>
-    Implementera OnInit i LectureShowRatingComponent, metoden som ska implementeras heter ngOnInit. ngOnInit ska i sin tur anropa fetchMovies och den metoden måste också implementeras.
+    Implementera OnInit i LectureShowRatingComponent, metoden som ska implementeras heter ngOnInit. ngOnInit ska i sin tur anropa fetchLectures och den metoden måste också implementeras.
   </li>
   <li>
-    fetchMovies måste få ett id som vi ska använda för att hämta en specifik föreläsning, vi kan extrahera id:t med
+    fetchLectures måste få ett id som vi ska använda för att hämta en specifik föreläsning, vi kan extrahera id:t med
     ActivatedRoute. I ActivatedRoute finns en property params som är en observable av Params. Params innehåller sedan routens parametrar.
     Params kan användas som ett vanligt JavaScript-objekt.
   </li>
