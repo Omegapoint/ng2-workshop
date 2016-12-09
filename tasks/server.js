@@ -31,4 +31,8 @@ var chokidarEvEmitter = require('chokidar-socket-emitter');
 chokidarEvEmitter({port: 9090, path: '.'});
 
 app.listen(9089);
-open('http://localhost:9089', 'google chrome');
+try {
+    open('http://localhost:9089', 'google chrome');
+} catch (e) {
+    console.log('failed to open \'http:localhost:9089\' using google chrome');
+}
